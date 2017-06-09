@@ -9,6 +9,8 @@ import * as path from "path"
 
 import * as fs from "fs-extra"
 
+import * as os from "os"
+
 import {sprintf} from "sprintf-js";
 
 async function run() {
@@ -18,7 +20,7 @@ async function run() {
 
     // Create the toml file for the default origin
     // determine the path for the toml file
-    let toml_path = path.join(process.env.home, ".hab", "etc", "cli.toml")
+    let toml_path = path.join(os.homedir(), ".hab", "etc", "cli.toml")
 
     // ensure that the parent path exists
     fs.ensureDirSync(path.dirname(toml_path))
