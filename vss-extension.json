@@ -3,7 +3,7 @@
     "id": "vsts-habitat-tasks",
     "name": "Habitat Integration",
     "version": "0.1.28",
-    "publisher": "russellseymour2",
+    "publisher": "chef-software",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
