@@ -18,7 +18,7 @@ async function run() {
 
     // Create the toml file for the default origin
     // determine the path for the toml file
-    let toml_path = path.join(process.env.HOME, ".hab", "etc", "cli.toml")
+    let toml_path = path.join(process.env.home, ".hab", "etc", "cli.toml")
 
     // ensure that the parent path exists
     fs.ensureDirSync(path.dirname(toml_path))
