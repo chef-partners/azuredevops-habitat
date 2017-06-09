@@ -1,0 +1,38 @@
+{
+  "name": "chef-vsts-tasks",
+  "description": "Chef Integration for Visual Studio Team System (VSTS)",
+  "author": "Chef Software, Inc.",
+  "scripts": {
+    "initdev:npm": "npm install && cd tasks/update_environment && npm install && cd ../..",
+    "initdev:typings": "pushd tasks && typings install && popd",
+    "initdev": "npm run initdev:npm && npm run initdev:typings",
+    "clean": "rimraf build",
+    "build": "npm run build:tasks && npm run package:tasks",
+    "build:tasks": "npm run clean && npm run build:tasks:noclean",
+    "build:tasks:noclean": "npm run compile:scripts && npm run taskdeps && npm run copylibs && npm run compile:tasks && npm run copyfiles",
+    "compile:scripts": "tsc --project scripts/tsconfig.json",
+    "compile:tasks": "tsc --project tasks/tsconfig.build.json",
+    "copylibs": "node scripts/copy_libs.js",
+    "copyfiles": "node scripts/copy_files.js",
+    "version": "node scripts/version.js",
+    "taskdeps": "node scripts/taskdeps.js",
+    "package:tasks": "tfx extension create --root build --output-path build --manifest-globs vss-extension.json"
+  },
+  "devDependencies": {
+    "fs-extra": "^2.0.0",
+    "mkdirp": "^0.5.1",
+    "q": "^1.4.1",
+    "rimraf": "^2.6.1",
+    "semver": "^5.3.0",
+    "tfx-cli": "^0.3.49",
+    "tsconfig-glob": "^0.4.3",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1",
+    "typings": "^2.1.0",
+    "sprintf-js": "^1.0.3"
+  },
+  "dependencies": {
+    "q": "^1.4.1",
+    "vsts-task-lib": "^1.1.0"
+  }
+}
