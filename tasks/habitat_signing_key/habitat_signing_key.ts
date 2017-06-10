@@ -25,11 +25,14 @@ async function run() {
     // ensure that the parent path exists
     fs.ensureDirSync(path.dirname(toml_path))
 
-    let content = sprintf('origin = "%s"', params["habitatOriginName"])
+    // Write out the default origin name as well as the GitHub auth token for publishing to the depot
+    let content = sprintf(`auth_token = "%s"
+    origin = "%s"'
+    `, params["habitatGitHubAuthToken"], params["habitatOriginName"])
     fs.writeFileSync(toml_path, content)
 
     // determine the file names of the origin to write out
-    let hab_cache_path = "/hab/cache/keys"
+    let hab_cache_path = path.join(os.homedir(), ".hab/cache/keys")
     let origin_base = sprintf("%s-%s", params["habitatOriginName"], params["habitatOriginRevision"])
     let public_key_path = path.join(hab_cache_path, sprintf("%s.pub", origin_base))
     let signing_key_path = path.join(hab_cache_path, sprintf("%s.sig.key", origin_base))

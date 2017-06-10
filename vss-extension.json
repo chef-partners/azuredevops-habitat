@@ -108,11 +108,22 @@
                                     "isRequired": true,
                                     "dataType": "string"
                                 }
+                            },
+                            {
+                                "id": "githubauthtoken",
+                                "name": "GitHub Auth Token",
+                                "description": "Authentication token for GitHub for publishing Habitat packages.",
+                                "inputMode": "textbox",
+                                "isConfidential": "true",
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string"
+                                }
                             }
                         ]
                     }
                 ],
-                "helpMarkDown": "Please provide the requested information so that Habitat packages can be built and deployed"
+                "helpMarkDown": "Please provide the requested information so that Habitat packages can be built and deployed. The GitHub authentication token requires `user:email` and `read:org` scopes"
             }
         },
         {
