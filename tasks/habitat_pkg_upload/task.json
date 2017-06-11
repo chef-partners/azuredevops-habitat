@@ -4,7 +4,7 @@
   "friendlyName": "Package Upload (Habitat)",
   "description": "Upload package to a depot",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
-  "category": "Publish",
+  "category": "Deploy",
   "author": "Chef",
   "version": {
     "Major": 0,

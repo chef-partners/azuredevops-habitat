@@ -31,7 +31,10 @@ export function parse(process, tl) {
     let input_fields = [
         "habitatPlanContext",
         "habitatSrcPath",
-        "habitatPackagePath"
+        "habitatPackagePath",
+        "habitatExportFormat",
+        "habitatExportVersion",
+        "habitatExportName"
     ]
 
     input_fields.forEach(function (input_field) {
