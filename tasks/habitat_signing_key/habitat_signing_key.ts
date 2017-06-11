@@ -27,8 +27,7 @@ async function run() {
 
     // Write out the default origin name as well as the GitHub auth token for publishing to the depot
     let content = sprintf(`auth_token = "%s"
-    origin = "%s"'
-    `, params["habitatGitHubAuthToken"], params["habitatOriginName"])
+origin = "%s"`, params["habitatGitHubAuthToken"], params["habitatOriginName"])
     fs.writeFileSync(toml_path, content)
 
     // determine the file names of the origin to write out
