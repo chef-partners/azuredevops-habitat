@@ -21,7 +21,7 @@ function installHabitat() {
             let url = "https://api.bintray.com/content/habitat/stable/linux/x86_64/hab-%24latest-x86_64-linux.tar.gz?bt_package=hab-x86_64-linux";
 
             // check that hab does not already exist
-            if (!fs.existsSync("/usr/local/bin/hab")) {
+            if (!fs.existsSync("/tmp/hab")) {
 
                 console.log("Installing Habitat");
 
@@ -31,13 +31,13 @@ function installHabitat() {
                     let curl_exit_code = tl.tool("curl").line(sprintf("-L %s --output /tmp/hab.tar.gz", url)).execSync();
 
                     // unpack the downloaded file into /usr/local/bin
-                    decompress('/tmp/hab.tar.gz', '/usr/local/bin', {
+                    decompress('/tmp/hab.tar.gz', '/tmp', {
                         plugins: [
                             decompressTargz()
                         ],
                         strip: 1
                     }).then(() => {
-                        console.log('Habitat installed: /usr/local/bin/hab')
+                        console.log('Habitat installed: /tmp/hab')
                     })
 
                 } catch (err) {
