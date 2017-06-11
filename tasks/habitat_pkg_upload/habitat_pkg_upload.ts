@@ -19,7 +19,7 @@ async function run() {
 
     // find the package file that has been referenced
     let package_files = glob.sync(params["habitatPackagePath"])
-    console.debug("Package files: %s", package_files)
+    console.log("Package file count: %s", package_files.length)
 
     // iterate around the package files that have been found
     for (var i = 0; i < package_files.length; i ++) {
