@@ -21,6 +21,7 @@ export function parse(process, tl) {
             inputs["habitatOriginPublicKey"] = habitat.parameters.publickey;
             inputs["habitatOriginSigningKey"] = habitat.parameters.password;
             inputs["habitatGitHubAuthToken"] = habitat.parameters.githubauthtoken;
+            inputs["habitatUseSudo"] = habitat.parameters.useSudo;
 
         }
     } catch (err) {
