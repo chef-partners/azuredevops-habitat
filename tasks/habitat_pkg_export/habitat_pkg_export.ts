@@ -21,7 +21,7 @@ async function run() {
     }
 
     try {
-        let exit_code = await tl.tool("/tmp/hab").line(args).exec()
+        let exit_code = await tl.tool(cmd).line(args).exec()
     } catch (err) {
         tl.setResult(tl.TaskResult.Failed, err.message)
     }
