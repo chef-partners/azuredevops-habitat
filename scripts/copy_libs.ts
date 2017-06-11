@@ -10,7 +10,7 @@ let tasks = common.get_tasks();
 let common_dir = path.join(__dirname, "..", "tasks", "common");
 
 // set array of tasks that the common lib should be copied into
-let tasks_with_libs = ["habitat_build", "habitat_signing_key", "habitat_pkg_upload"]
+let tasks_with_libs = ["habitat_build", "habitat_signing_key", "habitat_pkg_upload", "habitat_pkg_export"]
 
 // perform the operation to copy task files
 let libraries = tasks.map(function (task_name) {
