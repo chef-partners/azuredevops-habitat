@@ -35,7 +35,9 @@ export function parse(process, tl) {
         "habitatPackagePath",
         "habitatExportFormat",
         "habitatExportVersion",
-        "habitatExportName"
+        "habitatExportName",
+        "habitatArtifactFolder",
+        "habitatLastBuildEnvPath"
     ]
 
     input_fields.forEach(function (input_field) {
