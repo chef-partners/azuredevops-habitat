@@ -200,6 +200,16 @@
             "properties": {
                 "name": "tasks/habitat_pkg_export"
             }
-        }           
+        },
+        {
+            "id": "vsts-habitat-tasks-pkg-install",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/habitat_pkg_install"
+            }
+        }        
     ]
 }

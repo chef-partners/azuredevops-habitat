@@ -20,6 +20,7 @@ export function parse(process, tl) {
             inputs["habitatOriginRevision"] = habitat.parameters.revision;
             inputs["habitatOriginPublicKey"] = habitat.parameters.publickey;
             inputs["habitatOriginSigningKey"] = habitat.parameters.password;
+            inputs["habitatGitHubAuthToken"] = habitat.parameters.githubauthtoken;
 
         }
     } catch (err) {
@@ -29,7 +30,8 @@ export function parse(process, tl) {
     // create an array of inputs that should be checked for
     let input_fields = [
         "habitatPlanContext",
-        "habitatSrcPath"
+        "habitatSrcPath",
+        "habitatPackagePath"
     ]
 
     input_fields.forEach(function (input_field) {
