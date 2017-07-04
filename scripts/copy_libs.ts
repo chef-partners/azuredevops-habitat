@@ -14,7 +14,8 @@ let tasks_with_libs = ["habitat_build",
                        "habitat_signing_key", 
                        "habitat_pkg_upload", 
                        "habitat_pkg_export",
-                       "habitat_pkg_install"]
+                       "habitat_pkg_install",
+                       "docker_tag_image"]
 
 // perform the operation to copy task files
 let libraries = tasks.map(function (task_name) {
