@@ -37,7 +37,9 @@ export function parse(process, tl) {
         "habitatExportVersion",
         "habitatExportName",
         "habitatArtifactFolder",
-        "habitatLastBuildEnvPath"
+        "habitatLastBuildEnvPath",
+        "habitatDockerRepo",
+        "habitatDockerVersionTag"
     ]
 
     input_fields.forEach(function (input_field) {

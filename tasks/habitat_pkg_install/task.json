@@ -26,8 +26,8 @@
     {
       "name": "habitatArtifactFolder",
       "type": "string",
-      "label": "Results Folder",
-      "defaultValue": "$(Build.ArtifactStagingDirectory)",
+      "label": "Drop Folder",
+      "defaultValue": "$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop",
       "required": true,
       "helpMarkDown": "Set the directory in which the built hart file can be found"
     },
@@ -35,7 +35,7 @@
       "name": "habitatLastBuildEnvPath",
       "type": "string",
       "label": "Last Build Environment File",
-      "defaultValue": "$(Build.ArtifactStagingDirectory)/last_build.env",
+      "defaultValue": "$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop/last_build.env",
       "required": true,
       "helpMarkDown": "File to be read to set environment variable such as the artifact name"
     }

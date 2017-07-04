@@ -210,6 +210,16 @@
             "properties": {
                 "name": "tasks/habitat_pkg_install"
             }
-        }        
+        },
+        {
+            "id": "vsts-habitat-tasks-docker-tag",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/docker_tag_image"
+            }
+        }  
     ]
 }
