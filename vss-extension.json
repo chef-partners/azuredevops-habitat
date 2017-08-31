@@ -58,8 +58,7 @@
                 "displayName": "Habitat Origin",
                 "url": {
                     "displayName": "Habitat Depot URL",
-                    "helpText": "URL to the Habitat depot that will be used to deploy to",
-                    "value": "https://bldr.habitat.sh"
+                    "helpText": "URL to the Habitat depot that will be used to deploy to"
                 },
                 "inputDescriptors": [],
                 "authenticationSchemes": [
