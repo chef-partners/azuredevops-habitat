@@ -25,7 +25,7 @@ export function parse(process, tl) {
 
         }
     } catch (err) {
-        console.warn(err)
+        console.log("Habitat Service Endpoint not set on this task")
     }
 
     // create an array of inputs that should be checked for
