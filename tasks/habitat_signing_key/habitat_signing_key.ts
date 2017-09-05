@@ -32,6 +32,10 @@ origin = "%s"`, params["habitatGitHubAuthToken"], params["habitatOriginName"])
 
     // determine the file names of the origin to write out
     let hab_cache_path = path.join(os.homedir(), ".hab/cache/keys")
+
+    // ensure that the keys paths exists
+    fs.ensureDirSync(hab_cache_path);
+
     let origin_base = sprintf("%s-%s", params["habitatOriginName"], params["habitatOriginRevision"])
     let public_key_path = path.join(hab_cache_path, sprintf("%s.pub", origin_base))
     let signing_key_path = path.join(hab_cache_path, sprintf("%s.sig.key", origin_base))
