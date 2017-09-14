@@ -45,7 +45,7 @@ The following data on the endpoint is held securely:
 
 For details on installation, please read the [installation guide](https://github.com/chef-partners/vsts-habitat/wiki/install-extension).
 
-For detailed task documentation, please read the [task documentation](https://github.com/chef-partners/vsts-habitat/wiki/summary.
+For detailed task documentation, please read the [task documentation](https://github.com/chef-partners/vsts-habitat/wiki/summary).
 
 To report an issue, please check our issues list.
 
