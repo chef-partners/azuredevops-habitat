@@ -27,7 +27,27 @@
         }
     },
     "screenshots": [
-
+        {
+            "path": "build_plan.png"
+        },
+        {
+            "path": "install_habitat.png"
+        },
+        {
+            "path": "package_export.png"
+        },
+        {
+            "path": "package_install.png"
+        },
+        {
+            "path": "package_upload.png"
+        },
+        {
+            "path": "signing_key_origin.png"
+        },
+        {
+            "path": "tag_an_image.png"
+        }
     ],
     "files": [
         {

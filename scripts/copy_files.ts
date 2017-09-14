@@ -41,9 +41,13 @@ let items = [
   path.join(__dirname, "..", "vss-extension.json"),
   path.join(__dirname, "..", "overview.md"),
   path.join(__dirname, "..", "license.txt"),
-  // path.join(__dirname, "..", "screenshot_env_task.png"),
-  // path.join(__dirname, "..", "screenshot_env_parameters.png"),
-  // path.join(__dirname, "..", "screenshot_chef_server_endpoint.png"),
+  path.join(__dirname, "..", "screenshots", "build_plan.png"),
+  path.join(__dirname, "..", "screenshots", "install_habitat.png"),
+  path.join(__dirname, "..", "screenshots", "package_export.png"),
+  path.join(__dirname, "..", "screenshots", "package_install.png"),
+  path.join(__dirname, "..", "screenshots", "package_upload.png"),
+  path.join(__dirname, "..", "screenshots", "signing_key_origin.png"),
+  path.join(__dirname, "..", "screenshots", "tag_an_image.png"),
   path.join(__dirname, "..", "images")
 ]
 
