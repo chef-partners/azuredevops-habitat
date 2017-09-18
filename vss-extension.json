@@ -80,44 +80,70 @@
                     "displayName": "Habitat Depot URL",
                     "helpText": "URL to the Habitat depot that will be used to deploy to"
                 },
-                "inputDescriptors": [],
+                "inputDescriptors": [
+                    {
+                        "id": "originname",
+                        "name": "Origin Name",
+                        "description": "Name of the Habitat origin",
+                        "inputMode": "textbox",
+                        "isConfidential": false,
+                        "validation": {
+                            "isRequired": true,
+                            "dataType": "string"
+                        }
+                    },
+                    {
+                        "id": "revision",
+                        "name": "Revision",
+                        "description": "Revision of the origin to use",
+                        "inputMode": "textbox",
+                        "isConfidential": false,
+                        "validation": {
+                            "isRequired": true,
+                            "dataType": "string"
+                        }
+                    },
+                    {
+                        "id": "publickey",
+                        "name": "Public Key",
+                        "description": "Public item of the origin key pair",
+                        "inputMode": "textarea",
+                        "isConfidential": false,
+                        "validation": {
+                            "isRequired": true,
+                            "dataType": "string"
+                        }
+                    },
+                    {
+                        "id": "useSudo",
+                        "name": "Use Sudo",
+                        "description": "Use sudo on habitat commands",
+                        "inputMode": "combo",
+                        "isConfidential": false,
+                        "validation": {
+                            "isRequired": false,
+                            "dataType": "string"
+                        },
+                        "values": {
+                            "inputId": "useSudoValues",
+                            "defaultValue": "1",
+                            "possibleValues": [
+                                {
+                                    "value": "1",
+                                    "displayValue": "True"
+                                },
+                                {
+                                    "value": "0",
+                                    "displayValue": "False"
+                                }
+                            ]
+                        }
+                    }
+                ],
                 "authenticationSchemes": [
                     {
                         "type": "ms.vss-endpoint.endpoint-auth-scheme-basic",
                         "inputDescriptors": [
-                            {
-                                "id": "username",
-                                "name": "Origin Name",
-                                "description": "Name of the Habitat origin",
-                                "inputMode": "textbox",
-                                "isConfidential": false,
-                                "validation": {
-                                    "isRequired": true,
-                                    "dataType": "string"
-                                }
-                            },
-                            {
-                                "id": "revision",
-                                "name": "Revision",
-                                "description": "Revision of the origin to use",
-                                "inputMode": "textbox",
-                                "isConfidential": false,
-                                "validation": {
-                                    "isRequired": true,
-                                    "dataType": "string"
-                                }
-                            },
-                            {
-                                "id": "publickey",
-                                "name": "Public Key",
-                                "description": "Public item of the origin key pair",
-                                "inputMode": "textarea",
-                                "isConfidential": false,
-                                "validation": {
-                                    "isRequired": true,
-                                    "dataType": "string"
-                                }
-                            },
                             {
                                 "id": "password",
                                 "name": "Signing Key",
@@ -138,31 +164,6 @@
                                 "validation": {
                                     "isRequired": true,
                                     "dataType": "string"
-                                }
-                            },
-                            {
-                                "id": "useSudo",
-                                "name": "Use Sudo",
-                                "description": "Use sudo on habitat commands",
-                                "inputMode": "combo",
-                                "isConfidential": false,
-                                "validation": {
-                                    "isRequired": false,
-                                    "dataType": "string"
-                                },
-                                "values": {
-                                    "inputId": "useSudoValues",
-                                    "defaultValue": "1",
-                                    "possibleValues": [
-                                        {
-                                            "value": "1",
-                                            "displayValue": "True"
-                                        },
-                                        {
-                                            "value": "0",
-                                            "displayValue": "False"
-                                        }
-                                    ]
                                 }
                             }
                         ]
