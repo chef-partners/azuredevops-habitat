@@ -16,16 +16,19 @@ export function parse(process, tl) {
             // get the necessary inputs from the specified endpoint
             let habitat = tl.getEndpointAuthorization(connected_service)
 
-            inputs["habitatOriginName"] = habitat.data.originname;
-            inputs["habitatOriginRevision"] = habitat.data.revision;
-            inputs["habitatOriginPublicKey"] = habitat.data.publickey;
-            inputs["habitatUseSudo"] = habitat.data.useSudo;
+            inputs["habitatOriginName"] = habitat.parameters.originname;
+            inputs["habitatOriginRevision"] = habitat.parameters.revision;
+            inputs["habitatOriginPublicKey"] = habitat.parameters.publickey;
+            inputs["habitatUseSudo"] = habitat.parameters.useSudo;
 
             inputs["habitatOriginSigningKey"] = habitat.parameters.password;
             inputs["habitatGitHubAuthToken"] = habitat.parameters.githubauthtoken;
         }
     } catch (err) {
         console.log("Habitat Service Endpoint not set on this task")
+
+        // if running in debug mose output the error
+        tl.debug(err);
     }
 
     // create an array of inputs that should be checked for
