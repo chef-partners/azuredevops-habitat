@@ -16,7 +16,7 @@ export function parse(process, tl) {
             // get the necessary inputs from the specified endpoint
             let habitat = tl.getEndpointAuthorization(connected_service)
 
-            inputs["habitatOriginName"] = habitat.parameters.originname;
+            inputs["habitatOriginName"] = habitat.parameters.username;
             inputs["habitatOriginRevision"] = habitat.parameters.revision;
             inputs["habitatOriginPublicKey"] = habitat.parameters.publickey;
             inputs["habitatUseSudo"] = habitat.parameters.useSudo;
