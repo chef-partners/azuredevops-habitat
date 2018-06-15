@@ -5,8 +5,8 @@ import * as tl from "vsts-task-lib/task";
 import * as fs from "fs-extra";
 
 // Import libraries to support the unpacking of the habitat archive
-import * as decompress from "decompress"
-import * as decompressTargz from "decompress-targz"
+import * as decompress from "decompress";
+import * as decompressTargz from "decompress-targz";
 
 import * as os from "os";
 
@@ -31,14 +31,14 @@ function installHabitat() {
                     let curl_exit_code = tl.tool("curl").line(sprintf("-L %s --output /tmp/hab.tar.gz", url)).execSync();
 
                     // unpack the downloaded file into /usr/local/bin
-                    decompress('/tmp/hab.tar.gz', '/tmp', {
+                    decompress("/tmp/hab.tar.gz", "/tmp", {
                         plugins: [
                             decompressTargz()
                         ],
                         strip: 1
                     }).then(() => {
-                        console.log('Habitat installed: /tmp/hab')
-                    })
+                        console.log("Habitat installed: /tmp/hab");
+                    });
 
                 } catch (err) {
                     tl.setResult(tl.TaskResult.Failed, err.message);
@@ -60,4 +60,4 @@ async function run() {
     installHabitat();
 }
 
-run()
+run();

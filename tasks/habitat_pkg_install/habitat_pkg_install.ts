@@ -10,12 +10,12 @@ import {config} from "dotenv";
 
 import {sprintf} from "sprintf-js";
 
-import * as fs from "fs-extra"
+import * as fs from "fs-extra";
 
 async function run() {
 
     // get the parameters
-    let params = inputs.parse(process, tl)
+    let params = inputs.parse(process, tl);
 
     // check that the file exists to read the environment variables from
     if (!fs.existsSync(params["habitatLastBuildEnvPath"])) {
@@ -23,20 +23,20 @@ async function run() {
     } else {
 
         // read in the environment variables
-        config({path: params["habitatLastBuildEnvPath"]})
+        config({path: params["habitatLastBuildEnvPath"]});
 
         // based on the useSudo option, set the command and arguments
         let cmd = "/tmp/hab";
-        let args = sprintf("pkg install %s/%s", params["habitatArtifactFolder"], process.env.pkg_artifact)
-        if (params["habitatUseSudo"] == 1) {
-            args = sprintf("%s %s", cmd, args)
-            cmd = "sudo"
+        let args = sprintf("pkg install %s/%s", params["habitatArtifactFolder"], process.env.pkg_artifact);
+        if (params["habitatUseSudo"] === 1) {
+            args = sprintf("%s %s", cmd, args);
+            cmd = "sudo";
         }
 
         try {
-            let exit_code = await tl.tool(cmd).line(args).exec()
+            let exit_code = await tl.tool(cmd).line(args).exec();
         } catch (err) {
-            tl.setResult(tl.TaskResult.Failed, err.message)
+            tl.setResult(tl.TaskResult.Failed, err.message);
         }
     }
 }

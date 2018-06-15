@@ -19,19 +19,30 @@ export function parse(process, tl) {
             inputs["habitatOriginName"] = habitat.parameters.username;
             inputs["habitatOriginRevision"] = habitat.parameters.revision;
             inputs["habitatOriginPublicKey"] = habitat.parameters.publickey;
+            inputs["habitatUseSudo"] = habitat.parameters.useSudo;
+
             inputs["habitatOriginSigningKey"] = habitat.parameters.password;
             inputs["habitatGitHubAuthToken"] = habitat.parameters.githubauthtoken;
-
         }
     } catch (err) {
-        console.warn(err)
+        console.log("Habitat Service Endpoint not set on this task")
+
+        // if running in debug mose output the error
+        tl.debug(err);
     }
 
     // create an array of inputs that should be checked for
     let input_fields = [
         "habitatPlanContext",
         "habitatSrcPath",
-        "habitatPackagePath"
+        "habitatPackagePath",
+        "habitatExportFormat",
+        "habitatExportVersion",
+        "habitatExportName",
+        "habitatArtifactFolder",
+        "habitatLastBuildEnvPath",
+        "habitatDockerRepo",
+        "habitatDockerVersionTag"
     ]
 
     input_fields.forEach(function (input_field) {
