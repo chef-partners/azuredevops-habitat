@@ -7,7 +7,7 @@ import * as task from "./common/TaskConfiguration";
 
 import {sprintf} from "sprintf-js";
 
-function run(): Promise<void> {
+async function run() {
 
     // initialise the settings class
     let taskParameters = new task.TaskParameters();
@@ -18,25 +18,21 @@ function run(): Promise<void> {
         "habitatPlanContext"
     ];
 
-    return taskParameters.getTaskParameters(required).then((params) => {
-        // attempt to perform the build
-        // build up the arguments to run
-        let cmd = params.paths["habitat"];
-        let args = sprintf("pkg build -s %s %s", params.srcPath, params.planContext);
+    let params = await taskParameters.getTaskParameters(required);
 
-        // Output the command being run when in debug mode
-        tl.debug(sprintf("Command: %s %s", cmd, args));
+    // attempt to perform the build
+    // build up the arguments to run
+    let cmd = params.paths["habitat"];
+    let args = sprintf("pkg build -s %s %s", params.srcPath, params.planContext);
 
-        try {
-            let exit_code = tl.tool(cmd).line(args).execSync();
-        } catch (err) {
-            tl.setResult(tl.TaskResult.Failed, err.message);
-        }
-    });
+    // Output the command being run when in debug mode
+    tl.debug(sprintf("Command: %s %s", cmd, args));
+
+    try {
+        let exit_code = await tl.tool(cmd).line(args).exec();
+    } catch (err) {
+        tl.setResult(tl.TaskResult.Failed, err.message);
+    }
 }
 
-run().then((result) =>
-    tl.setResult(tl.TaskResult.Succeeded, "")
-).catch((error) =>
-    tl.setResult(tl.TaskResult.Failed, error)
-);
+run();

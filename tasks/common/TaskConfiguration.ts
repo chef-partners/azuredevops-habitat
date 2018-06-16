@@ -165,20 +165,6 @@ export class TaskParameters {
             console.log("Running as root: %s", this.runningAsRoot);
             console.log("Use Sudo: %s", this.useSudo);
 
-            // get the values for the task inputs
-            /*
-            this.planContext = this.getValue("habitatPlanContext", true, "input");
-            this.srcPath = this.getValue("habitatSrcPath", false, "input");
-            this.packagePath = this.getValue("habitatPackagePath", false, "input");
-            this.exportFormat = this.getValue("habitatExportFormat", false, "input");
-            this.exportVersion = this.getValue("habitatExportVersion", false, "input");
-            this.exportName = this.getValue("habitatExportName", false, "input");
-            this.artifactFolder = this.getValue("habitatArtifactFolder", false, "input");
-            this.lastBuildEnvPath = this.getValue("habitatLastBuildEnvPath", false, "input");
-            this.dockerRepo = this.getValue("habitatDockerRepo", false, "input");
-            this.dockerVersionTag = this.getValue("habitatDockerVersionTag", false, "input");
-            */
-
         } catch (error) {
             throw new Error(sprintf("Task failed during initialisation. Error: %s", error.message));
         }
