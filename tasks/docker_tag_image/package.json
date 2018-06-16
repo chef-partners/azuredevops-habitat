@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "dotenv": "^4.0.0",
-    "fs-extra": "^2.0.0",
     "sprintf-js": "^1.0.3",
+    "username": "^3.0.0",
     "vsts-task-lib": "^1.1.0"
   }
 }

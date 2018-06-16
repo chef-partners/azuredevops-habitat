@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Script",
+            "program": "${file}",
+            "outFiles": [
+                "${workspaceFolder}/tasks/habitat_build/**/*.js"
+            ],
+            "env": {
+                "NODE_ENV": "dev",
+                "HABITATSRCPATH": "${workspaceFolder}/local/src",
+                "HABITATPLANCONTEXT": "${workspaceFolder}/local/habitat"
+            },
+            "sourceMaps": true,
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register"
+            ],
+            "protocol": "inspector"
+        }
+    ]
+}

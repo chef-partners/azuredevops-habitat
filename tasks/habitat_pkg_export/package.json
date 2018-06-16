@@ -2,7 +2,7 @@
   "name": "task-habitat-pkg-export",
   "version": "1.0.0",
   "dependencies": {
-    "fs-extra": "^2.0.0",
+    "username": "^3.0.0",
     "sprintf-js": "^1.0.3",
     "vsts-task-lib": "^1.1.0"
   }

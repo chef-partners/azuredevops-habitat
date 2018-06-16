@@ -3,9 +3,10 @@
         "output": "build"
     },
     "task_libs": {
-        "inputs.ts": [
+        "TaskConfiguration.ts": [
             "docker_tag_image",
             "habitat_build",
+            "habitat_install",
             "habitat_pkg_export",
             "habitat_pkg_upload",
             "habitat_pkg_install",

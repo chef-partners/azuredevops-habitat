@@ -3,51 +3,47 @@
 import * as tl from "vsts-task-lib/task";
 
 // Import common tasks
-import * as inputs from "./common/inputs";
+import * as task from "./common/TaskConfiguration";
 
 import * as path from "path";
 
-import * as fs from "fs-extra";
-
-import * as os from "os";
-
 import {sprintf} from "sprintf-js";
 
-async function run() {
+function run(): Promise<void> {
 
-    // get the parameters that have been set on the task
-    let params = inputs.parse(process, tl);
+    // initialise the settings class
+    let taskParameters = new task.TaskParameters();
 
-    // Create the toml file for the default origin
-    // determine the path for the toml file
-    let toml_path = path.join(os.homedir(), ".hab", "etc", "cli.toml");
+    // get the parameters and default settings
+    let required = [
+        "habitatOriginName",
+        "habitatOriginRevision"
+    ];
 
-    // ensure that the parent path exists
-    fs.ensureDirSync(path.dirname(toml_path));
+    return taskParameters.getTaskParameters(required, "habitatoriginendpoint").then((params) => {
 
-    // Write out the default origin name as well as the GitHub auth token for publishing to the depot
-    let content = sprintf(`auth_token = "%s"
-origin = "%s"`, params["habitatGitHubAuthToken"], params["habitatOriginName"]);
-    fs.writeFileSync(toml_path, content);
+        // Write out the origin name as well as the auth token
+        tl.debug(sprintf("Writing out config file: %s", params.paths["config_file"]));
+        let content = sprintf(`auth_token = "%s"
+        origin = "%s"`, params.authToken, params.originName);
+        tl.writeFile(params.paths["config_file"], content);
 
-    // determine the file names of the origin to write out
-    let hab_cache_path = path.join(os.homedir(), ".hab/cache/keys");
+        // determine the filenames for the signing key pair
+        let origin_base = sprintf("%s-%s", params.originName, params.originRevision);
+        let public_key_path = path.join(params.paths["signing_keys"], sprintf("%s.pub", origin_base));
+        let signing_key_path = path.join(params.paths["signing_keys"], sprintf("%s.sig.key", origin_base));
 
-    // ensure that the keys paths exists
-    fs.ensureDirSync(hab_cache_path);
+        tl.debug(sprintf("Public key path: %s", public_key_path));
+        tl.debug(sprintf("Signing key path: %s", signing_key_path));
 
-    let origin_base = sprintf("%s-%s", params["habitatOriginName"], params["habitatOriginRevision"]);
-    let public_key_path = path.join(hab_cache_path, sprintf("%s.pub", origin_base));
-    let signing_key_path = path.join(hab_cache_path, sprintf("%s.sig.key", origin_base));
-
-    // write out the files with the relevant data
-    console.log("Writing origin details: %s", params["habitatOriginName"]);
-
-    console.log("Public key: %s", public_key_path);
-    console.log("Signing Key: %s", signing_key_path);
-    fs.writeFileSync(public_key_path, params["habitatOriginPublicKey"]);
-    fs.writeFileSync(signing_key_path, params["habitatOriginSigningKey"]);
-
+        // write out the data to the files
+        tl.writeFile(public_key_path, params.originPublicKey);
+        tl.writeFile(signing_key_path, params.originSigningKey);
+    });
 }
 
-run();
+run().then((result) =>
+    tl.setResult(tl.TaskResult.Succeeded, "")
+).catch((error) =>
+    tl.setResult(tl.TaskResult.Failed, error)
+);
