@@ -10,7 +10,7 @@ import {config} from "dotenv";
 
 import {sprintf} from "sprintf-js";
 
-function run(): Promise<void> {
+async function run() {
 
     // initialise the settings class
     let taskParameters = new task.TaskParameters();
@@ -22,37 +22,32 @@ function run(): Promise<void> {
         "habitatDockerVersionTag"
     ];
 
-    return taskParameters.getTaskParameters(required).then((params) => {
+    let params = await taskParameters.getTaskParameters(required);
 
-        if (!tl.exist(params.lastBuildEnvPath)) {
-            tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", params.lastBuildEnvPath));
-        } else {
+    if (!tl.exist(params.lastBuildEnvPath)) {
+        tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", params.lastBuildEnvPath));
+    } else {
 
-            // read in the environment variables
-            config({path: params.lastBuildEnvPath});
+        // read in the environment variables
+        config({path: params.lastBuildEnvPath});
 
-            // based on the useSudo option, set the command and arguments
-            let cmd = params.paths["habitat"];
-            let args = sprintf("pkg install %s/%s", params.artifactFolder, process.env.pkg_artifact);
-            if (params.useSudo) {
-                args = sprintf("%s %s", cmd, args);
-                cmd = "sudo";
-            }
-
-            // if in debug mode output the command being executed
-            tl.debug(sprintf("Command: %s %s", cmd, args));
-
-            try {
-                let exit_code = tl.tool(cmd).line(args).execSync();
-            } catch (err) {
-                tl.setResult(tl.TaskResult.Failed, err.message);
-            }
+        // based on the useSudo option, set the command and arguments
+        let cmd = params.paths["habitat"];
+        let args = sprintf("pkg install %s/%s", params.artifactFolder, process.env.pkg_artifact);
+        if (params.useSudo) {
+            args = sprintf("%s %s", cmd, args);
+            cmd = "sudo";
         }
-    });
+
+        // if in debug mode output the command being executed
+        tl.debug(sprintf("Command: %s %s", cmd, args));
+
+        try {
+            let exit_code = await tl.tool(cmd).line(args).exec();
+        } catch (err) {
+            tl.setResult(tl.TaskResult.Failed, err.message);
+        }
+    }
 }
 
-run().then((result) =>
-    tl.setResult(tl.TaskResult.Succeeded, "")
-).catch((error) =>
-    tl.setResult(tl.TaskResult.Failed, error)
-);
+run();

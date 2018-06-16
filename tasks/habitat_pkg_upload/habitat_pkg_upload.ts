@@ -10,7 +10,7 @@ import * as glob from "glob";
 
 import {sprintf} from "sprintf-js";
 
-function run(): Promise<void> {
+async function run() {
 
     // initialise the settings class
     let taskParameters = new task.TaskParameters();
@@ -20,36 +20,32 @@ function run(): Promise<void> {
         "habitatPackagePath"
     ];
 
-    return taskParameters.getTaskParameters(required).then((params) => {
-        // find the package file that has been referenced
-        let package_files = glob.sync(params.packagePath);
+    let params = await taskParameters.getTaskParameters(required);
 
-        // iterate around the package files that have been found
-        for (let i = 0; i < package_files.length; i ++) {
+    // find the package file that has been referenced
+    let package_files = glob.sync(params.packagePath);
 
-            // ensure that the file exists
-            if (tl.exist(package_files[0])) {
+    // iterate around the package files that have been found
+    for (let i = 0; i < package_files.length; i ++) {
 
-                // build up the command that needs to be run
-                let cmd = params.paths["habitat"];
-                let args = sprintf("pkg upload %s", package_files[0]);
+        // ensure that the file exists
+        if (tl.exist(package_files[0])) {
 
-                // if in debug mode output the command being executed
-                tl.debug(sprintf("Command: %s %s", cmd, args));
+            // build up the command that needs to be run
+            let cmd = params.paths["habitat"];
+            let args = sprintf("pkg upload %s", package_files[0]);
 
-                // execute the upload to the depot
-                try {
-                    let exit_code = tl.tool(cmd).line(args).execSync();
-                } catch (err) {
-                    tl.setResult(tl.TaskResult.Failed, err.message);
-                }
+            // if in debug mode output the command being executed
+            tl.debug(sprintf("Command: %s %s", cmd, args));
+
+            // execute the upload to the depot
+            try {
+                let exit_code = await tl.tool(cmd).line(args).exec;
+            } catch (err) {
+                tl.setResult(tl.TaskResult.Failed, err.message);
             }
         }
-    });
+    }
 }
 
-run().then((result) =>
-    tl.setResult(tl.TaskResult.Succeeded, "")
-).catch((error) =>
-    tl.setResult(tl.TaskResult.Failed, error)
-);
+run();
