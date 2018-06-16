@@ -24,7 +24,8 @@ export class TaskParameters {
         "config_file": "",
         "signing_keys": "",
         "habitat": "",
-        "download_path": ""
+        "download_path": "",
+        "unpack_path": ""
     }
     public originName: string = null;
     public originRevision: string = null;
@@ -85,6 +86,7 @@ export class TaskParameters {
 
                 // determine the download path
                 this.paths["download_path"] = "/tmp/hab.tar.gz";
+                this.paths["unpack_path"] = "/tmp";
 
                 // ensure that the paths exist so files can be written
                 if (!tl.exist(path.dirname(this.paths["config_file"]))) {

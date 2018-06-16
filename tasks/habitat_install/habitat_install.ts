@@ -12,54 +12,51 @@ import * as os from "os";
 
 import {sprintf} from "sprintf-js";
 
-function run(): Promise<void> {
+async function run() {
 
     // initialise the settings class
     let taskParameters = new task.TaskParameters();
 
-    return taskParameters.getTaskParameters([]).then((params) => {
-        // determine the platform
-        switch (os.platform()) {
-            case "linux":
+    let params = await taskParameters.getTaskParameters([]);
 
-                // check that hab does not already exist
-                if (!tl.exist(params.paths["habitat"])) {
+    // determine the platform
+    switch (os.platform()) {
+        case "linux":
 
-                    console.log("Installing Habitat");
+            // check that hab does not already exist
+            if (!tl.exist(params.paths["habitat"])) {
 
-                    // download, unzip and copy habitat
-                    try {
+                console.log("Installing Habitat");
 
-                        // build up the command to download the file
-                        let cmd = "curl";
-                        let args = sprintf("-L %s --output %s", params.scriptUrl, params.paths["download_path"]);
+                // download, unzip and copy habitat
+                try {
 
-                        let curl_exit_code = tl.tool(cmd).line(args).execSync();
+                    // build up the command to download the file
+                    let cmd = "curl";
+                    let args = sprintf("-L %s --output %s", params.scriptUrl, params.paths["download_path"]);
 
-                        // output the command being run when in debug mode
-                        tl.debug(sprintf("Command: %s %s", cmd, args));
+                    let curl_exit_code = await tl.tool(cmd).line(args).exec();
 
-                        // unpack the downloaded file into /usr/local/bin
-                        decompress(params.paths["download_path"], params.paths["unpack_path"], {
-                            plugins: [
-                                decompressTargz()
-                            ],
-                            strip: 1
-                        }).then(() => {
-                            console.log("Habitat installed: %s", params.paths["unpack_path"]);
-                        });
+                    // unpack the downloaded file into /usr/local/bin
+                    decompress(params.paths["download_path"], params.paths["unpack_path"], {
+                        plugins: [
+                            decompressTargz()
+                        ],
+                        strip: 1
+                    }).then(() => {
+                        console.log("Habitat installed: %s", params.paths["unpack_path"]);
+                    });
 
-                    } catch (err) {
-                        tl.setResult(tl.TaskResult.Failed, err.message);
-                    }
-                } else {
-                    console.log("Habitat is installed");
+                } catch (err) {
+                    tl.setResult(tl.TaskResult.Failed, err.message);
                 }
+            } else {
+                console.log("Habitat is installed");
+            }
 
-                break;
+            break;
 
-        }
-    });
+    }
 }
 
 run().then((result) =>
