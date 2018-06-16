@@ -20,7 +20,7 @@ function run(): Promise<void> {
         "habitatOriginRevision"
     ];
 
-    return taskParameters.getTaskParameters(required, "habitatoriginendpoint").then((params) => {
+    return taskParameters.getTaskParameters(required, "habitatOrigin").then((params) => {
 
         // Write out the origin name as well as the auth token
         tl.debug(sprintf("Writing out config file: %s", params.paths["config_file"]));
