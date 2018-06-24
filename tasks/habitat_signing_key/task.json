@@ -11,7 +11,7 @@
     "Minor": 0,
     "Patch": 11
   },
-  "instanceNameFormat": "Signing Origin Key",
+  "instanceNameFormat": "Signing Origin Key: $(taskAction)",
   "groups": [
   ],
   "inputs": [
