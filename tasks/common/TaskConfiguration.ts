@@ -44,6 +44,7 @@ export class TaskParameters {
     public dockerRepo: string = null;
     public dockerVersionTag: string = null;
     public scriptUrl: string = null;
+    public taskAction: string = null;
 
     /**
      * Function to return a standard object with default values
@@ -123,7 +124,8 @@ export class TaskParameters {
             "artifactFolder": "habitatArtifactFolder",
             "lastBuildEnvPath": "habitatLastBuildEnvPath",
             "dockerRepo": "habitatDockerRepo",
-            "dockerVersionTag": "habitatDockerVersionTag"
+            "dockerVersionTag": "habitatDockerVersionTag",
+            "taskAction": "taskAction"
         };
 
         // To assist with debugging check to see if the environment variable NODE_ENV has been
