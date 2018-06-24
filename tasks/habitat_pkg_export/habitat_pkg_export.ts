@@ -20,7 +20,7 @@ async function run() {
         "habitatUseSudo"
     ];
 
-    let params = await taskParameters.getTaskParameters(required);
+    let params = await taskParameters.getTaskParameters(required, "habitatOrigin");
 
     // build up the command to run
     // this needs to be adjusted if useSudo is true
