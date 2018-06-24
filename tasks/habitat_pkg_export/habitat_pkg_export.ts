@@ -16,6 +16,7 @@ async function run() {
     let required = [
         "habitatExportFormat",
         "habitatExportVersion",
+        "habitatExportName",
         "habitatUseSudo"
     ];
 
