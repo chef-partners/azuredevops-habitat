@@ -41,6 +41,8 @@ async function run() {
             // ensure that the file exists
             if (tl.exist(package_files[0])) {
 
+                console.log("Exporting package: %s", package_files[0]);
+
                 // build up the command that needs to be run
                 let cmd = params.paths["habitat"];
                 let args = sprintf("pkg export %s %s", params.exportFormat, package_files[0]);
@@ -51,6 +53,7 @@ async function run() {
                 // execute the upload to the depot
                 try {
                     let exit_code = await tl.tool(cmd).line(args).exec;
+                    tl.debug(sprintf("Exit code: %s", String(exit_code)));
                 } catch (err) {
                     tl.setResult(tl.TaskResult.Failed, err.message);
                 }
