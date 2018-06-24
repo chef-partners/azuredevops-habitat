@@ -51,7 +51,7 @@ async function run() {
 
                 // execute the upload to the depot
                 try {
-                    let exit_code = await tl.tool(cmd).line(args).exec;
+                    let exit_code = await tl.tool(cmd).line(args).exec();
                     tl.debug(sprintf("Exit code: %s", String(exit_code)));
                 } catch (err) {
                     tl.setResult(tl.TaskResult.Failed, err.message);
