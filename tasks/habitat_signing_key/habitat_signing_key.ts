@@ -29,9 +29,7 @@ async function run() {
     let signing_key_path = path.join(params.paths["signing_keys"], sprintf("%s.sig.key", origin_base));
 
     tl.debug(sprintf("Public key path: %s", public_key_path));
-    tl.debug(sprintf("Signing key path: %s", signing_key_path))
-
-
+    tl.debug(sprintf("Signing key path: %s", signing_key_path));
 
     // depending on the task action, either create or remove the files
     switch (params.taskAction) {
@@ -48,7 +46,7 @@ async function run() {
             // write out the data to the files
             tl.writeFile(public_key_path, params.originPublicKey);
             tl.writeFile(signing_key_path, params.originSigningKey);
-            
+
             break;
 
         case "remove":
@@ -62,7 +60,6 @@ async function run() {
             if (tl.exist(public_key_path)) {
                 tl.rmRF(public_key_path);
             }
-
 
             if (tl.exist(signing_key_path)) {
                 tl.rmRF(signing_key_path);
