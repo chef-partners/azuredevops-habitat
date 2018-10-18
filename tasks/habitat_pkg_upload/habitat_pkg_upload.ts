@@ -46,6 +46,13 @@ async function run() {
                 let cmd = params.paths["habitat"];
                 let args = sprintf("pkg upload %s", package_files[0]);
 
+                // if a channel has been specified, add it to the command
+                if (typeof params.packageChannel !== "undefined" && params.packageChannel)
+                {
+                    console.log("Package Channel: %s", params.packageChannel);
+                    args = sprintf("%s --channel %s", args, params.packageChannel);
+                }
+
                 // if in debug mode output the command being executed
                 tl.debug(sprintf("Command: %s %s", cmd, args));
 

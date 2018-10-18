@@ -118,6 +118,7 @@ export class TaskParameters {
             "planContext": "habitatPlanContext",
             "srcPath": "habitatSrcPath",
             "packagePath": "habitatPackagePath",
+            "packageChannel": "habitatPackageChannel",
             "exportFormat": "habitatExportFormat",
             "exportVersion": "habitatExportVersion",
             "exportName": "habitatExportName",
