@@ -17,7 +17,8 @@ async function run() {
 
     // get the parameters and default settings
     let required = [
-        "habitatPackagePath"
+        "habitatPackagePath",
+        "habitatPackageChannel"
     ];
 
     let params = await taskParameters.getTaskParameters(required);
