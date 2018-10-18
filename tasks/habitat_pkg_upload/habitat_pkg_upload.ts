@@ -47,8 +47,7 @@ async function run() {
                 let args = sprintf("pkg upload %s", package_files[0]);
 
                 // if a channel has been specified, add it to the command
-                if (typeof params.packageChannel !== "undefined" && params.packageChannel)
-                {
+                if (typeof params.packageChannel !== "undefined" && params.packageChannel) {
                     console.log("Package Channel: %s", params.packageChannel);
                     args = sprintf("%s --channel %s", args, params.packageChannel);
                 }
