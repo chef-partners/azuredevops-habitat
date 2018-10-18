@@ -36,6 +36,7 @@ export class TaskParameters {
     public planContext: string = null;
     public srcPath: string = null;
     public packagePath: string = null;
+    public packageChannel: string = null;
     public exportFormat: string = null;
     public exportVersion: string = null;
     public exportName: string = null;
