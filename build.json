@@ -10,7 +10,8 @@
             "habitat_pkg_export",
             "habitat_pkg_upload",
             "habitat_pkg_install",
-            "habitat_signing_key"
+            "habitat_signing_key",
+            "expose_habitat_build_vars"
         ]
     },
     "files": {

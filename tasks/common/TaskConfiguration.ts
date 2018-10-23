@@ -14,6 +14,7 @@ import * as path from "path";
 import * as os from "os";
 import * as tl from "vsts-task-lib/task";
 import * as username from "username";
+import { getMaxListeners } from "cluster";
 
 export class TaskParameters {
 
@@ -46,6 +47,7 @@ export class TaskParameters {
     public dockerVersionTag: string = null;
     public scriptUrl: string = null;
     public taskAction: string = null;
+    public setBuildNumber: boolean = false;
 
     /**
      * Function to return a standard object with default values
@@ -125,6 +127,7 @@ export class TaskParameters {
             "exportName": "habitatExportName",
             "artifactFolder": "habitatArtifactFolder",
             "lastBuildEnvPath": "habitatLastBuildEnvPath",
+            "setBuildNumber": "habitatSetBuildNumber",
             "dockerRepo": "habitatDockerRepo",
             "dockerVersionTag": "habitatDockerVersionTag",
             "taskAction": "taskAction"
