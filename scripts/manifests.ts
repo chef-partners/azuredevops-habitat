@@ -33,7 +33,7 @@ export function configure(build_config) {
     // ensure that the endpoint is tagged with preview as well
     console.log("  setting PREVIEW on endpoint");
     preview_manifest.contributions[0].id = sprintf("%s-preview", preview_manifest.contributions[0].id);
-    preview_manifest.contributions[0].description = sptintf("%s Preview", preview_manifest.contributions[0].description);
+    preview_manifest.contributions[0].description = sprintf("%s Preview", preview_manifest.contributions[0].description);
     preview_manifest.contributions[0].properties.name = sprintf("%s-preview", preview_manifest.contributions[0].properties.name);
     preview_manifest.contributions[0].displayName = sprintf("%s - PREVIEW", preview_manifest.contributions[0].displayName);
 
