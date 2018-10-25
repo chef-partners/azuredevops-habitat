@@ -60,6 +60,12 @@ export function create (options, build_config) {
       console.log("    add PREVIEW suffix to title");
       task_manifest.friendlyName = sprintf("%s - PREVIEW", task_manifest.friendlyName);
 
+      // if the task is using the connected service, ensure that it is looking for the preview version
+      if (task_manifest.inputs.length > 0 && task_manifest.inputs[0].name === "habitatOrigin") {
+        console.log("    setting preview endpoint");
+        task_manifest.inputs[0].type = sprintf("%s-preview", task_manifest.inputs[0].type);
+      }
+
       fs.writeFileSync(task_manifest_file, JSON.stringify(task_manifest, null, 4));
   });
 

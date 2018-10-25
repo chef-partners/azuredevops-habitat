@@ -30,6 +30,11 @@ export function configure(build_config) {
     console.log("  setting Peview gallery flag");
     preview_manifest.galleryFlags.push("Preview");
 
+    // ensure that the endpoint is tagged with preview as well
+    console.log("  setting PREVIEW on endpoint");
+    preview_manifest.contributions[0].properties.name = sprintf("%s-preview", preview_manifest.contributions[0].properties.name);
+    preview_manifest.contributions[0].description = sprintf("%s - PREVIEW", preview_manifest.contributions[0].description);
+
     // save the file
     fs.writeFileSync(preview_manifest_file, JSON.stringify(preview_manifest, null, 4));
 
