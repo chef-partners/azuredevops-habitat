@@ -241,6 +241,16 @@
             "properties": {
                 "name": "tasks/docker_tag_image"
             }
+        },
+        {
+            "id": "vsts-expose-habitat-build-vars",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "tasks/expose_habitat_build_vars"
+            }
         }  
     ]
 }
