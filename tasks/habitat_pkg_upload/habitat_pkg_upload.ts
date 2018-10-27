@@ -21,7 +21,7 @@ async function run() {
         "habitatPackageChannel"
     ];
 
-    let params = await taskParameters.getTaskParameters(required);
+    let params = await taskParameters.getTaskParameters(required, "habitatOrigin");
 
     // find the package file that has been referenced
     let package_files = glob.sync(params.packagePath);
