@@ -39,7 +39,7 @@ async function run() {
 
             // Write out the origin name as well as the auth token
             tl.debug(sprintf("Writing out config file: %s", params.paths["config_file"]));
-            let content = sprintf(`origin = "%s"`, params.authToken, params.originName);
+            let content = sprintf(`origin = "%s"`, params.originName);
             tl.writeFile(params.paths["config_file"], content);
 
             // write out the data to the files
