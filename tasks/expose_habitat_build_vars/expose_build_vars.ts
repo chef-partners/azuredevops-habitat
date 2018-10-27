@@ -23,7 +23,8 @@ async function run() {
 
   // define the parameters that this task requires
   let required = [
-      "habitatLastBuildEnvPath"
+      "habitatLastBuildEnvPath",
+      "habitatSetBuildNumber"
   ];
 
   let params = await taskParameters.getTaskParameters(required);
