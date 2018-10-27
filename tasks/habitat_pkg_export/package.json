@@ -2,9 +2,9 @@
   "name": "task-habitat-pkg-export",
   "version": "1.0.0",
   "dependencies": {
-    "username": "^3.0.0",
-    "glob": "^7.1.2",    
+    "azure-pipelines-task-lib": "^2.7.1",
+    "glob": "^7.1.2",
     "sprintf-js": "^1.0.3",
-    "vsts-task-lib": "^1.1.0"
+    "username": "^3.0.0"
   }
 }

@@ -6,7 +6,7 @@
  */
 
 // Import tasks from vsts
-import * as tl from "vsts-task-lib/task";
+import * as tl from "azure-pipelines-task-lib/task";
 
 // Import common tasks
 import * as task from "./common/TaskConfiguration";
