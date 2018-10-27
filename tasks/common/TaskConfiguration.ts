@@ -159,6 +159,9 @@ export class TaskParameters {
                     // get the sensitive information
                     this.originSigningKey = this.getValue("signingKey", true, "auth", connectedService);
                     this.authToken = this.getValue("authToken", true, "auth", connectedService);
+
+                    // set the authToken as en environment variable for this task
+                    tl.setTaskVariable("HAB_AUTH_TOKEN", this.authToken);
                 }
             }
 
