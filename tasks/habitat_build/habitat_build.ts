@@ -18,7 +18,7 @@ async function run() {
         "habitatPlanContext"
     ];
 
-    let params = await taskParameters.getTaskParameters(required);
+    let params = await taskParameters.getTaskParameters(required, "habitatOrigin");
 
     // attempt to perform the build
     // build up the arguments to run
