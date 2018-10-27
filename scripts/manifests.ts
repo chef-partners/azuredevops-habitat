@@ -35,7 +35,7 @@ export function configure(build_config) {
     preview_manifest.contributions[0].id = sprintf("%s-preview", preview_manifest.contributions[0].id);
     preview_manifest.contributions[0].description = sprintf("%s Preview", preview_manifest.contributions[0].description);
     preview_manifest.contributions[0].properties.name = sprintf("%s-preview", preview_manifest.contributions[0].properties.name);
-    preview_manifest.contributions[0].displayName = sprintf("%s - PREVIEW", preview_manifest.contributions[0].displayName);
+    preview_manifest.contributions[0].properties.displayName = sprintf("%s - PREVIEW", preview_manifest.contributions[0].properties.displayName);
 
     // save the file
     fs.writeFileSync(preview_manifest_file, JSON.stringify(preview_manifest, null, 4));

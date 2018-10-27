@@ -157,7 +157,7 @@
                             },
                             {
                                 "id": "authToken",
-                                "name": "GitHub Auth Token",
+                                "name": "Habitat Auth Token",
                                 "description": "Authentication token for publishing Habitat packages.",
                                 "inputMode": "textbox",
                                 "isConfidential": "true",
@@ -169,7 +169,7 @@
                         ]
                     }
                 ],
-                "helpMarkDown": "Please provide the requested information so that Habitat packages can be built and deployed. The GitHub authentication token requires `user:email` and `read:org` scopes"
+                "helpMarkDown": "Please provide the requested information so that Habitat packages can be built and deployed. The Habitat Auth Token should be created from your profile at https://bldr.habitat.sh/#/profile"
             }
         },
         {
