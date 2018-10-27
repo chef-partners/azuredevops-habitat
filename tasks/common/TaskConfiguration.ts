@@ -116,6 +116,9 @@ export class TaskParameters {
         // Get the standard settings
         this.standard();
 
+        // set variable with environment var name
+        let env_var_auth_token = "HAB_AUTH_TOKEN";
+
         // set the mapping of parameter names to class properties
         let mapping = {
             "planContext": "habitatPlanContext",
@@ -161,7 +164,8 @@ export class TaskParameters {
                     this.authToken = this.getValue("authToken", true, "auth", connectedService);
 
                     // set the authToken as en environment variable for this task
-                    tl.setTaskVariable("HAB_AUTH_TOKEN", this.authToken);
+                    tl.debug(sprintf("Setting %s environment variable", env_var_auth_token));
+                    tl.setTaskVariable(env_var_auth_token, this.authToken);
                 }
             }
 
