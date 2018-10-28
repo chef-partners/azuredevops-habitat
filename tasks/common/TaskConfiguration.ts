@@ -165,7 +165,7 @@ export class TaskParameters {
 
                     // set the authToken as en environment variable for this task
                     tl.debug(sprintf("Setting %s environment variable", env_var_auth_token));
-                    tl.setTaskVariable(env_var_auth_token, this.authToken);
+                    tl.setVariable(env_var_auth_token, this.authToken);
                 }
             }
 
