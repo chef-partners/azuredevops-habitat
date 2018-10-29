@@ -24,7 +24,10 @@ async function run() {
   // define the parameters that this task requires
   let required = [
       "habitatLastBuildEnvPath",
-      "habitatSetBuildNumber"
+      "habitatSetBuildNumber",
+      "habitatSetImageNames",
+      "habitatImageNames",
+      "habitatImageNamesFilename"
   ];
 
   let params = await taskParameters.getTaskParameters(required);
@@ -63,6 +66,16 @@ async function run() {
       let build_number = sprintf("%s-%s", process.env.pkg_version, process.env.pkg_release);
       console.log("Setting Build Number: %s", build_number);
       console.log("##vso[build.updatebuildnumber]%s", build_number);
+    }
+
+    // if the option has been specified to set the images to tag, write out the filename
+    // and set the variable name to use
+    if (params.setImageNames) {
+      console.log("Writing image names file: %s", params.imageNamesFilename);
+      tl.writeFile(params.imageNamesFilename, params.imageNames);
+
+      // set the path to the imagefilename as a variable
+      tl.setVariable("image_names_filename", params.imageNamesFilename);
     }
   }
 

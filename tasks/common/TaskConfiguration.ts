@@ -48,6 +48,9 @@ export class TaskParameters {
     public scriptUrl: string = null;
     public taskAction: string = null;
     public setBuildNumber: boolean = false;
+    public setImageNames: boolean = false;
+    public imageNames: string = null;
+    public imageNamesFilename: string = null;
 
     /**
      * Function to return a standard object with default values
@@ -133,7 +136,10 @@ export class TaskParameters {
             "setBuildNumber": "habitatSetBuildNumber",
             "dockerRepo": "habitatDockerRepo",
             "dockerVersionTag": "habitatDockerVersionTag",
-            "taskAction": "taskAction"
+            "taskAction": "taskAction",
+            "setImageNames": "habitatSetImageNames",
+            "imageNames": "habitatImageNames",
+            "imageNamesFilename": "habitatImageNamesFilename"
         };
 
         // To assist with debugging check to see if the environment variable NODE_ENV has been
