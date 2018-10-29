@@ -72,13 +72,40 @@ async function run() {
     // and set the variable name to use
     if (params.setImageNames) {
       console.log("Writing image names file: %s", params.imageNamesFilename);
-      tl.writeFile(params.imageNamesFilename, params.imageNames);
+
+      // evaluate the string so that variables can be expanded
+      let contents = expandenv(params.imageNames);
+      tl.writeFile(params.imageNamesFilename, contents);
 
       // set the path to the imagefilename as a variable
       tl.setVariable("image_names_filename", params.imageNamesFilename);
     }
   }
 
+}
+
+function expandenv(phrase, env = {}) {
+  if (!phrase) {
+    throw new Error("Please pass a string into expandenv");
+  }
+
+  env = merge(process.env, (env || {}));
+
+  return phrase.replace(/\$[\w]+/g, function(match) {
+    return env[match.replace("$", "")] || match;
+  });
+}
+
+function merge(orig, newObj) {
+  let result = new Object(orig);
+
+  Object.keys(newObj).forEach(function(key) {
+    if (newObj.hasOwnProperty(key)) {
+      result[key] = newObj[key];
+    }
+  });
+
+  return result;
 }
 
 run();
