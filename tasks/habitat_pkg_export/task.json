@@ -13,6 +13,11 @@
   },
   "instanceNameFormat": "Package Export",
   "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }    
   ],
   "inputs": [
     {
@@ -46,6 +51,15 @@
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "Path to the built Habitat package"
+    },
+    {
+      "name": "habitatPackageChannel",
+      "type": "string",
+      "label": "Package Channel",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Channel that the package will be put into in the Depot. If not 'unstable' will be used",
+      "groupName": "advanced"
     }
   ],
   "execution": {

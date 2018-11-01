@@ -51,6 +51,7 @@ export class TaskParameters {
     public setImageNames: boolean = false;
     public imageNames: string = null;
     public imageNamesFilename: string = null;
+    public depotUrl: string = null;
 
     /**
      * Function to return a standard object with default values
@@ -156,6 +157,9 @@ export class TaskParameters {
 
                 // if the servce endpoint is not null, e.g. it is attached to the task get the reevant information
                 if (connectedService != null) {
+                    // set the depot URL
+                    this.depotUrl = this.getValue("url", true, "url", connectedService);
+
                     this.originName = this.getValue("originName", true, "data", connectedService);
                     this.originRevision = this.getValue("revision", true, "data", connectedService);
                     this.originPublicKey = this.getValue("publicKey", true, "data", connectedService);
@@ -204,6 +208,10 @@ export class TaskParameters {
 
             // based on the type, call the method to get the correct data
             switch (type) {
+                case "url":
+                    // get the endpoint URL from the connected service
+                    value = tl.getEndpointUrl(connectedService, required);
+                    break;
                 case "input":
                     // get the value from the task
                     value = tl.getInput(parameter, required);

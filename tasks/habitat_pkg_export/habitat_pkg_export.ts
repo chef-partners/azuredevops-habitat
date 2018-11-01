@@ -18,10 +18,11 @@ async function run() {
     // get the parameters and default settings
     let required = [
         "habitatExportFormat",
-        "habitatPackagePath"
+        "habitatPackagePath",
+        "habitatPackageChannel"
     ];
 
-    let params = await taskParameters.getTaskParameters(required);
+    let params = await taskParameters.getTaskParameters(required, "habitatOrigin");
 
     // find the package file that has been referenced
     let package_files = glob.sync(params.packagePath);
@@ -45,7 +46,27 @@ async function run() {
 
                 // build up the command that needs to be run
                 let cmd = params.paths["habitat"];
-                let args = sprintf("pkg export %s %s", params.exportFormat, package_files[0]);
+
+                // create an array for the args
+                let args_parts = ["pkg export"];
+
+                // add the depot URL
+                args_parts.push(sprintf("--url %s", params.depotUrl));
+
+                // if a channel has been specified on the task add it here
+                if (params.packageChannel) {
+                    console.log("Habitat Channel: %s", params.packageChannel);
+                    args_parts.push(sprintf("--channel %s", params.packageChannel));
+                }
+
+                // add in the export format
+                args_parts.push(params.exportFormat);
+
+                // add in the package file to export
+                args_parts.push(package_files[0]);
+
+                // join the args_parts together to get the args
+                let args = args_parts.join(" ");
 
                 // if in debug mode output the command being executed
                 tl.debug(sprintf("Command: %s %s", cmd, args));
