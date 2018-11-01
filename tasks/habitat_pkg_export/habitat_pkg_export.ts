@@ -50,6 +50,9 @@ async function run() {
                 // create an array for the args
                 let args_parts = ["pkg export"];
 
+                // add in the export format
+                args_parts.push(params.exportFormat);
+
                 // add the depot URL
                 args_parts.push(sprintf("--url %s", params.depotUrl));
 
@@ -58,9 +61,6 @@ async function run() {
                     console.log("Habitat Channel: %s", params.packageChannel);
                     args_parts.push(sprintf("--channel %s", params.packageChannel));
                 }
-
-                // add in the export format
-                args_parts.push(params.exportFormat);
 
                 // add in the package file to export
                 args_parts.push(package_files[0]);

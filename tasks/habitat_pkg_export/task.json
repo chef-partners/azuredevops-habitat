@@ -58,7 +58,7 @@
       "label": "Package Channel",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "Channel that the package will be put into in the Depot. If not 'unstable' will be used",
+      "helpMarkDown": "Channel that will be assigned to the Docker image. If not set 'stable' will be used",
       "groupName": "advanced"
     }
   ],
