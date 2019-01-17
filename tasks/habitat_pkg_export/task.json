@@ -58,7 +58,7 @@
       "label": "Package Channel",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "Channel that will be assigned to the Docker image. If not set 'stable' will be used",
+      "helpMarkDown": "Channel that packages will be downloaded from when creating the exported image. If not set `stable` will be used",
       "groupName": "advanced"
     }
   ],
