@@ -41,7 +41,7 @@
             },
             {
                 "source": "docs/images/company_logo.png",
-                "target": "images/habitat_logo.png"
+                "target": "images/habitat-logo.png"
             }
         ]
     }

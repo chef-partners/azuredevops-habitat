@@ -35,18 +35,6 @@
         },
         {
             "path": "package_export.png"
-        },
-        {
-            "path": "package_install.png"
-        },
-        {
-            "path": "package_upload.png"
-        },
-        {
-            "path": "signing_key_origin.png"
-        },
-        {
-            "path": "tag_an_image.png"
         }
     ],
     "files": [
@@ -56,13 +44,13 @@
     ],
     "links": {
         "home": {
-            "uri": "https://github.com/chef-partners/vsts-tasks/wiki"
+            "uri": "https://chef-partners.github.io/azuredevops-habitat"
         },
         "getstarted": {
-            "uri": "https://github.com/chef-partners/vsts-chef/wiki/Getting-Started"
+            "uri": "hhttps://chef-partners.github.io/azuredevops-habitat/getting-started.html"
         },
         "issues": {
-            "uri": "https://github.com/chef-partners/vsts-chef/issues"
+            "uri": "https://github.com/chef-partners/azuredevops-habitat/issues"
         }
     },
     "contributions": [
