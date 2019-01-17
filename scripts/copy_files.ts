@@ -43,6 +43,14 @@ export function copy(options, build_config) {
     // check the type of item and use the appropriate function
     // file
     if (fs.statSync(item.source).isFile()) {
+
+      // ensure that the parent targetpath exists
+      let parentPath = path.dirname(targetpath);
+
+      if (!fs.existsSync(parentPath)) {
+        fs.mkdirSync(parentPath);
+      }
+
       common.copyFileSync(item.source, targetpath);
     }
 
