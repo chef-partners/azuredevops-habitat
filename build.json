@@ -20,17 +20,28 @@
             "task.json"
         ],
         "extension": [
-            "vss-extension.json",
-            "overview.md",
-            "license.txt",
-            "screenshots/build_plan.png",
-            "screenshots/install_habitat.png",
-            "screenshots/package_export.png",
-            "screenshots/package_install.png",
-            "screenshots/package_upload.png",
-            "screenshots/signing_key_origin.png",
-            "screenshots/tag_an_image.png",
-            "images"
+            {
+                "source": "vss-extension.json"
+            },
+            {
+                "source": "docs/pages/index.md",
+                "target": "overview.md"
+            },
+            {
+                "source": "license.txt"
+            },
+            {
+                "source": "docs/images/build_plan.png"
+            },
+            {
+                "source": "docs/images/install_habitat.png"
+            },
+            {
+                "source": "docs/images/package_export.png"
+            },
+            {
+                "source": "images"
+            }
         ]
     }
 }

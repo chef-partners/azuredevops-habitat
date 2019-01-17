@@ -31,8 +31,8 @@ function parseBuildConfig(app_root, build_config_file) {
     // iterate around the extension files and prepend the app_root if the files
     // are not absolute
     let extension_files = build_config["files"]["extension"].map(function(file) {
-      if (!path.isAbsolute(file)) {
-        file = path.join(app_root, file);
+      if (!path.isAbsolute(file.source)) {
+        file.source = path.join(app_root, file.source);
       }
       return file;
     });

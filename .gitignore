@@ -5,3 +5,5 @@ typings
 local/
 build/
 tasks/*/common
+docs/_site
+.uru

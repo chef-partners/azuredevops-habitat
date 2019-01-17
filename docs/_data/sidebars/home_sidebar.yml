@@ -1,0 +1,60 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: Sidebar
+  levels: one
+  folders:
+
+  - title: Overview
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /index.html
+      output: web
+    - title: Getting Started
+      url: /getting-started.html
+      output: web
+    - title: Habitat Endpoint
+      url: /habitat-endpoint.html
+      output: web
+
+  - title: Tasks
+    output: web
+    folderitems:
+    - title: Install Habitat
+      url: /install-habitat.html
+      output: web
+    - title: Signing Key Origin
+      url: /signing-key-origin.html
+      output: web
+    - title: Build Plan
+      url: /build-plan.html
+      output: web
+    - title: Package Install
+      url: /package-install.html
+      output: web
+    - title: Package Upload
+      url: /package-upload.html
+      output: web
+    - title: Package Export
+      url: /package-export.html
+      output: web
+    - title: Tag an Image
+      url: /tag-an-image.html
+      output: web
+
+  - title: Guides
+    output: web
+    folderitems:
+    - title: Install Extension
+      url: /install-extension.html
+      output: web
+    - title: Create Habitat Endpoint
+      url: /create-habitat-endpoint.html
+      output: web
+    - title: Build Package
+      url: /build-habitat-package.html
+      output: web
+    - title: Release Package
+      url: /release-habitat-package.html
+      output: web                  

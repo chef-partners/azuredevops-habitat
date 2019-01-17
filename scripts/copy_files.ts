@@ -33,17 +33,22 @@ export function copy(options, build_config) {
 
   let extension_files = build_config.files.extension.map(function (item) {
 
-    console.log("Copying: " + item);
+    console.log("Copying: " + item.source);
+    let targetpath = output;
+
+    if ("target" in item) {
+      targetpath = path.join(output, item.target);
+    }
 
     // check the type of item and use the appropriate function
     // file
-    if (fs.statSync(item).isFile()) {
-      common.copyFileSync(item, output);
+    if (fs.statSync(item.source).isFile()) {
+      common.copyFileSync(item.source, targetpath);
     }
 
     // directory
-    if (fs.statSync(item).isDirectory()) {
-      common.copyFolderRecursiveSync(item, output);
+    if (fs.statSync(item.source).isDirectory()) {
+      common.copyFolderRecursiveSync(item.source, targetpath);
     }
   });
 
