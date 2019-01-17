@@ -40,7 +40,8 @@
                 "source": "docs/images/package_export.png"
             },
             {
-                "source": "images"
+                "source": "docs/images/company_logo.png",
+                "target": "images/habitat_logo.png"
             }
         ]
     }
