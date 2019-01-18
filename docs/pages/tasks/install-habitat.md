@@ -1,12 +1,9 @@
 ---
 title: Install Habitat
-layout: default
 permalink: install-habitat.html
 ---
 
-# Install Habitat
-
-| **VSTS Task Name** | **VSTS Phase** |
+| **Azure DevOps Task Name** | **Azure DevOps Phase** |
 |--------------------|----------------|
 | Install Habitat    | Build          |
 
@@ -30,4 +27,4 @@ This is an essential task to have at the start of your pipeline because all subs
 
 ## Screenshot
 
-[[/images/install_habitat.png|Install Habitat Task]]
+![Install Habitat Task](/images/install_habitat.png)

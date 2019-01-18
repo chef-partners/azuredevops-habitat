@@ -21,6 +21,9 @@ entries:
   - title: Tasks
     output: web
     folderitems:
+    - title: Summary
+      url: /summary.html
+      output: web
     - title: Install Habitat
       url: /install-habitat.html
       output: web
@@ -29,6 +32,9 @@ entries:
       output: web
     - title: Build Plan
       url: /build-plan.html
+      output: web
+    - title: Expose Build Variables
+      url: /expose-build-variables.html
       output: web
     - title: Package Install
       url: /package-install.html

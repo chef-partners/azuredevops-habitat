@@ -3,13 +3,11 @@ title: Habitat Endpoint
 permalink: habitat-endpoint.html
 ---
 
-# Habitat Endpoint
-
 An endpoint, called 'Habitat Endpoint' is bundled with this extension. This allows multuple Habitat depots to be configured and reused across tasks as required.
 
-VSTS endpoints hold secrets secret so this is the best place to add your Habitat signing key and GitHub token. This information will never be displayed in log files, but will be accessed by the tasks that need them.
+Azure DevOps endpoints hold secrets secret so this is the best place to add your Habitat signing key and GitHub token. This information will never be displayed in log files, but will be accessed by the tasks that need them.
 
-[[/images/habitat_endpoint.png|Habitat Endpoint Screenshot]]
+![Habitat Endpoint Configuration](/images/habitat_endpoint.png)
 
 The following table describes each of the fields in the screenshot:
 
@@ -21,7 +19,7 @@ The following table describes each of the fields in the screenshot:
 | Revision          | The revision of the origin to use                                                                           | 20170610095911          |
 | Public Key        | The public key associated with the specified origin                                                         |                         |
 | Signing Key       | The signing (private) key associated with the specified origin                                              |                         |
-| GitHub Auth Key   | GitHub authentication token for publishing packages to the Habitat depot                                    |                         |
+| Habitat Auth Token   | Habitat PAT for publishing packages to the Habitat depot                                    |                         |
 | Use Sudo          | Some habitat tasks may need to use `sudo` to work correctly, this option states if they are allows to do so | True                    |
 
 

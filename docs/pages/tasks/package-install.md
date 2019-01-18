@@ -5,7 +5,7 @@ permalink: package-install.html
 
 # Package Install
 
-| **VSTS Task Name**        | **VSTS Phase** |
+| **Azure DevOps Task Name**        | **Azure DevOps Phase** |
 |---------------------------|----------------|
 | Package Install (Habitat) | Release        |
 
@@ -28,7 +28,7 @@ If the option to use `sudo` has been set in the Service Endpoint this task will 
 | Drop Folder                 | yes      | `$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop`               | Directory in which the Habitat `.hart` file exists                                                                                                                 |
 | Last Build Environment File | yes      | `$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop/last_build.sh` | Path to the Habitat generated `last_build.sh` file. This contains the version and revision values that the agent requires to find the correct Habitat package file |
 
-The variables specified in the table above come from VSTS. A list of well known variables can be found [here](https://www.visualstudio.com/en-us/docs/build/define/variables).
+The variables specified in the table above come from Azure DevOps. A list of well known variables can be found [here](https://www.visualstudio.com/en-us/docs/build/define/variables).
 
 ## Command
 
@@ -45,4 +45,4 @@ $> hab pkg install russellseymour/mypackage
 
 ## Screenshot
 
-[[/images/package_install.png | Package Install Task]]
+![Package Install Task](/images/package_install.png)

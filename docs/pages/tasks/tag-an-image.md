@@ -3,9 +3,7 @@ title: Tag an Image
 permalink: tag-an-image.html
 ---
 
-# Tag an Image
-
-| **VSTS Task Name**     | **VSTS Phase** |
+| **Azure DevOps Task Name**     | **Azure DevOps Phase** |
 |------------------------|----------------|
 | Tag an Image (Habitat) | Release        |
 
@@ -15,7 +13,7 @@ Tags a Docker image that has been exported from Habitat.
 
 ## Description
 
-It is not possible to tag a Docker image that is exported from Habitat. However if the image needs to be uploaded to a Docker Registry (using one of the VSTS Docker tasks) then it must be tagged. This task allows the tagging of the exported image.
+It is not possible to tag a Docker image that is exported from Habitat. However if the image needs to be uploaded to a Docker Registry (using one of the Azure DevOps Docker tasks) then it must be tagged. This task allows the tagging of the exported image.
 
 This task requires Docker to be installed.
 
@@ -30,7 +28,7 @@ NOTE: This is just a tagging task, it does not perform the upload to the specifi
 | Version Tag                 | yes                                                                              | `$(Build.BuildNumber)`                     | Version to tag the image with                     |
 | Last Build Environment File | `$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop/last_build.env` | Path to the Habitat build environment file |                                                   |
 
-The variables specified in the table above come from VSTS. A list of well known variables can be found [here](https://www.visualstudio.com/en-us/docs/build/define/variables).
+The variables specified in the table above come from Azure DevOps. A list of well known variables can be found [here](https://www.visualstudio.com/en-us/docs/build/define/variables).
 
 ## Command
 
@@ -51,4 +49,4 @@ $> docker tag russellseymour/mypackage:1.1.15-20170607113423 docker.io/russellse
 
 ## Screenshot
 
-[[/images/tag_an_image.png | Tag an Image Task]]
+![Tag an Image Task](/images/tag_an_image.png)

@@ -1,8 +1,9 @@
 ---
 title: Azure DevOps Habitat Extension
-layout: default
 permalink: index.html
 ---
+
+NOTE: There are breaking changes for the [Package Export](https://chef-partners.github.io/package-export.html) task in version 2.x
 
 This [Habitat](https://habitat.sh) integration for Azure Devops provides a set of tasks that enable the use of Habitat during the Build and Release phases pipelines. Use these tasks to build and release your software application as a Habitat package that can be deployed anywhere.
 
@@ -27,7 +28,7 @@ These tasks are typically used as part of your release process:
 
 ## Getting Started
 
-See our guide to [Getting Started](https://github.com/chef-partners/azuredevops-habitat/wiki/getting-started).
+See our guide to [Getting Started](https://chef-partners.github.io/azuredevops-habitat/getting-started.html).
 
 ## Project Configuration / Endpoint
 
@@ -50,9 +51,9 @@ The following data on the endpoint is held securely:
 
 ## Documentation and Help
 
-For details on installation, please read the [installation guide](https://github.com/chef-partners/azuredevops-habitat/wiki/install-extension).
+For details on installation, please read the [installation guide](https://chef-partners.github.io/azuredevops-habitat/install-extension.html).
 
-For detailed task documentation, please read the [task documentation](https://github.com/chef-partners/azuredevops-habitat/wiki/summary).
+For detailed task documentation, please read the [task documentation](https://chef-partners.github.io/azuredevops-habitat/summary.html).
 
 To report an issue, please check our issues list.
 

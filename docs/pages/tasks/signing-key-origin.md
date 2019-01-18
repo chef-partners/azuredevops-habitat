@@ -5,7 +5,7 @@ permalink: signing-key-origin.html
 
 # Signing Key Origin
 
-| **VSTS Task Name**           | **VSTS Phase** |
+| **Azure DevOps Task Name**           | **Azure DevOps Phase** |
 |------------------------------|----------------|
 | Signing Origin Key (Habitat) | Build          |
 
@@ -26,4 +26,4 @@ Copy the signing key, as specified in the [[Habitat Endpoint]], so that built Ha
 
 ## Screenshot
 
-[[/images/signing_key_origin.png|Signing Key Origin Task]]
+![Signing Key Origin Task](/images/signing_key_origin.png)

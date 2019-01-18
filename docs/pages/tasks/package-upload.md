@@ -5,7 +5,7 @@ permalink: package-upload.html
 
 # Package Upload
 
-| **VSTS Task Name**       | **VSTS Phase** |
+| **Azure DevOps Task Name**       | **Azure DevOps Phase** |
 |--------------------------|----------------|
 | Package Upload (Habitat) | Release        |
 
@@ -27,7 +27,7 @@ Uploads the built Habitat package to the Depot as specfied in the Habitat Endpoi
 
 It is possible to use the ellipsis at the end of the text field to select the package to be uploaded, however this will be static and will only ever upload that one package. Additionally if the pipeline has not been run then there will be artifacts to select.
 
-It is suggested that the path is built up using [VSTS variables](https://www.visualstudio.com/en-us/docs/build/define/variables), as can be seen in the screenshot below.
+It is suggested that the path is built up using [Azure DevOps variables](https://www.visualstudio.com/en-us/docs/build/define/variables), as can be seen in the screenshot below.
 
 ## Command
 
@@ -39,4 +39,4 @@ $> hab pkg upload <PACKAGE_NAME>
 
 ## Screenshot
 
-[[/images/package_upload.png | Package Upload Task]]
+![Package Upload Task](/images/package_upload.png)

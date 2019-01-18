@@ -5,7 +5,7 @@ permalink: build-plan.html
 
 # Build Plan
 
-| **VSTS Task Name**   | **VSTS Phase** |
+| **Azure DevOps Task Name**   | **Azure DevOps Phase** |
 |----------------------|----------------|
 | Build Plan (Habitat) | Build          |
 
@@ -25,7 +25,7 @@ Builds the package using the specified plan.sh. Some defaults have been added to
 | Source Path  | yes      | `$(Build.SourcesDirectory)` | Root of the project                                        |
 | Plan Context | yes      | habitat                     | Directory within the project that holds the `plan.sh` file |
 
-The variable specified in the "Source Path" above comes from VSTS. A list of well known variables can be found [here](https://www.visualstudio.com/en-us/docs/build/define/variables).
+The variable specified in the "Source Path" above comes from Azure DevOps. A list of well known variables can be found [here](https://www.visualstudio.com/en-us/docs/build/define/variables).
 
 ## Command
 
@@ -41,4 +41,4 @@ $> hab pkg -s /usr/local/vsts-agent/_work/s habitat
 
 ## Screenshot
 
-[[/images/build_plan.png | Build Plan Task]]
+![Build Plan Task](/images/build_plan.png)

@@ -29,7 +29,3 @@ The following release process will upload the build Habitat package to the Habit
 14. Monitor the progress of the build using the link that is provided at the top of the page.
 
 Once the release has completed it should be possible to login to the Habitat Depot and see the newly uploaded package on the dashboard.
-
-<div style="text-align: center">
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=6nRzpLUXUpE" target="_blank"><img src="http://img.youtube.com/vi/6nRzpLUXUpE/0.jpg" alt="Install shared extension" width="480" height="360" border="10" /></a>
-</div>
