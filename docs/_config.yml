@@ -37,7 +37,7 @@ exclude:
 
 feedback_subject_line: Azure DevOps Habitat Extension
 
-feedback_email: rseymour@chef.io
+feedback_email: partnereng@chef.io
 # used as a contact email for the Feedback link in the top navigation bar
 
 feedback_disable: true
