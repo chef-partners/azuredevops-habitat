@@ -13,6 +13,11 @@
   },
   "instanceNameFormat": "Package Export",
   "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }    
   ],
   "inputs": [
     {
@@ -31,27 +36,30 @@
       "required": true,
       "helpMarkDown": "Select the export format",
       "options": {
-        "docker": "docker",
         "aci": "aci",
+        "docker": "docker",
+        "helm": "helm",
+        "kubernetes": "kubernetes",
         "mesos": "mesos",
         "tar": "tar"
       }
     },
     {
-      "name": "habitatExportName",
-      "type": "string",
-      "label": "Name",
-      "defaultValue": "$(System.TeamProject)",
+      "name": "habitatPackagePath",
+      "type": "filePath",
+      "label": "Package Path",
+      "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Name of the exported package"
-    },    
+      "helpMarkDown": "Path to the built Habitat package"
+    },
     {
-      "name": "habitatExportVersion",
+      "name": "habitatPackageChannel",
       "type": "string",
-      "label": "Version to export the package with",
-      "defaultValue": "$(Build.BuildNumber)",
-      "required": true,
-      "helpMarkDown": "Version to attach to the exported package"
+      "label": "Package Channel",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Channel that packages will be downloaded from when creating the exported image. If not set `stable` will be used",
+      "groupName": "advanced"
     }
   ],
   "execution": {

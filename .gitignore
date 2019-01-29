@@ -4,3 +4,6 @@ node_modules
 typings
 local/
 build/
+tasks/*/common
+docs/_site
+.uru

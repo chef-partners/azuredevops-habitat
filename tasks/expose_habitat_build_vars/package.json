@@ -1,0 +1,10 @@
+{
+  "name": "task-expose-habitat-build-vars",
+  "version": "1.0.0",
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.7.1",
+    "dotenv": "^4.0.0",
+    "sprintf-js": "^1.0.3",
+    "username": "^3.0.0"
+  }
+}

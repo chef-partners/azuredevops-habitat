@@ -1,4 +1,4 @@
-This [Habitat](https://habitat.sh) integration for Visual Studio Team Services provides a set of tasks that enable the use of Habitat during the Build and Release phases pipelines. Use these tasks to build and release your software application as a Habitat package that can be deployed anywhere.
+This [Habitat](https://habitat.sh) integration for Azure Devops provides a set of tasks that enable the use of Habitat during the Build and Release phases pipelines. Use these tasks to build and release your software application as a Habitat package that can be deployed anywhere.
 
 [Habitat](https://habitat.sh) provides a toolset that allows software to be packaged into an immutable configurable archive which can be shared. This archive can be deployed anywhere or exported to other formats such as Docker.
 
@@ -8,6 +8,7 @@ These tasks are typically used in your Build process:
  - **Install Habitat**: Installs Habitat on the build agent
  - **Signing origin key**: Copies your Habitat origin key to the agent for package signing
  - **Build plan**: Build the Habitat package using the project plan.sh
+ - **Expose Build Variables**: Expose the Habitat build variables to Azure Devops
 
 ## Release Tasks
 
@@ -20,13 +21,13 @@ These tasks are typically used as part of your release process:
 
 ## Getting Started
 
-See our guide to [Getting Started](https://github.com/chef-partners/vsts-habitat/wiki/getting-started).
+See our guide to [Getting Started](https://github.com/chef-partners/azuredevops-habitat/wiki/getting-started).
 
 ## Project Configuration / Endpoint
 
 Before you add any Build or Release tasks to your pipelines, you will need to configure your Habitat Origin "endpoint".
 
-Endpoints are a per-project configuration and be accessed via **Project Settings** (cog) > **Services** from your VSTS account.
+Endpoints are a per-project configuration and be accessed via **Project Settings** (cog) > **Services** from your Azure Devops account.
 
 The Habitat origin endpoint allows you to specify the following information so it does not have to be repeated on each task. It also stores certain information securely.
 
@@ -43,9 +44,9 @@ The following data on the endpoint is held securely:
 
 ## Documentation and Help
 
-For details on installation, please read the [installation guide](https://github.com/chef-partners/vsts-habitat/wiki/install-extension).
+For details on installation, please read the [installation guide](https://github.com/chef-partners/azuredevops-habitat/wiki/install-extension).
 
-For detailed task documentation, please read the [task documentation](https://github.com/chef-partners/vsts-habitat/wiki/summary).
+For detailed task documentation, please read the [task documentation](https://github.com/chef-partners/azuredevops-habitat/wiki/summary).
 
 To report an issue, please check our issues list.
 

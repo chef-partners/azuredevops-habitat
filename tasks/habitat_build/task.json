@@ -15,6 +15,14 @@
   "groups": [
   ],
   "inputs": [
+    {
+      "name": "habitatOrigin",
+      "type": "connectedService:habitatoriginendpoint",
+      "label": "Habitat Origin",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Select or create new Habitat Origin endpoint. This is so that the HAB_AUTH_TOKEN is set for the build."
+    },
       {
       "name": "habitatSrcPath",
       "type": "string",

@@ -2,40 +2,47 @@
 import * as common from "./common";
 import * as path from "path";
 import * as Q from "q";
+import * as fs from "fs-extra";
 
-// retrieve all the task directories
-let tasks = common.get_tasks();
+export function copy(options, build_config) {
 
-// determine the path to the common dir
-let common_dir = path.join(__dirname, "..", "tasks", "common");
+  console.log("Copying common libraries");
 
-// set array of tasks that the common lib should be copied into
-let tasks_with_libs = ["habitat_build", 
-                       "habitat_signing_key", 
-                       "habitat_pkg_upload", 
-                       "habitat_pkg_export",
-                       "habitat_pkg_install",
-                       "docker_tag_image"]
+  // retrieve all the task directories
+  let tasks = common.get_tasks();
 
-// perform the operation to copy task files
-let libraries = tasks.map(function (task_name) {
+  // determine the path to the common libraries dir
+  let common_dir = path.join(options.parent.tasksdir, "common");
 
-  // only copy the common directory to the tasks that require it
-  if (tasks_with_libs.indexOf(task_name) > -1) {
+  // iterate around the tasks with libs
+  // the key is the file to copy and the value is an array of the tasks that require the file
+  let libraries = Object.keys(build_config.task_libs).map(function (libfile, task_list) {
 
-    console.log("Copying common libs: %s", task_name)
+    // perform operation to copy library file
+    tasks.map(function (task_name) {
 
-    // determine the target path
-    let target = path.join(__dirname, "..", "tasks", task_name);
+        // if the task is in the array of tasks for this file then copy the file
+        if (build_config.task_libs[libfile].indexOf(task_name) > -1) {
 
-    common.copyFolderRecursiveSync(common_dir, target);
+          // determine the src and target path
+          let source = path.join(common_dir, libfile);
+          let target = path.join(options.parent.tasksdir, task_name, "common");
 
-  }
+          // ensure that the target directory exists
+          if (!fs.existsSync(target)) {
+            fs.mkdirSync(target);
+          }
 
-});
+          common.copyFileSync(source, target);
 
-Q.all([libraries])
-  .fail(function (err) {
-    console.error(err)
-    process.exit(1)
-  })
+          console.log("Copying '%s' to task: %s", libfile, task_name);
+        }
+    });
+  });
+
+  Q.all([libraries])
+    .fail(function (err) {
+      console.error(err);
+      process.exit(1);
+    });
+}

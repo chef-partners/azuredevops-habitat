@@ -1,0 +1,48 @@
+{
+    "dirs": {
+        "output": "build"
+    },
+    "task_libs": {
+        "TaskConfiguration.ts": [
+            "docker_tag_image",
+            "habitat_build",
+            "habitat_install",
+            "habitat_pkg_export",
+            "habitat_pkg_upload",
+            "habitat_pkg_install",
+            "habitat_signing_key",
+            "expose_habitat_build_vars"
+        ]
+    },
+    "files": {
+        "task": [
+            "icon.png",
+            "task.json"
+        ],
+        "extension": [
+            {
+                "source": "vss-extension.json"
+            },
+            {
+                "source": "docs/pages/index.md",
+                "target": "overview.md"
+            },
+            {
+                "source": "license.txt"
+            },
+            {
+                "source": "docs/images/build_plan.png"
+            },
+            {
+                "source": "docs/images/install_habitat.png"
+            },
+            {
+                "source": "docs/images/package_export.png"
+            },
+            {
+                "source": "docs/images/company_logo.png",
+                "target": "images/habitat-logo.png"
+            }
+        ]
+    }
+}

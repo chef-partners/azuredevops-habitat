@@ -1,44 +1,51 @@
 // Import tasks from vsts
-import * as tl from "vsts-task-lib/task";
+import * as tl from "azure-pipelines-task-lib/task";
 
-// Import tasks for the filesystem
-import * as fs from "fs-extra";
+// Import library to get the task parameters
+import * as task from "./common/TaskConfiguration";
 
 // Import libraries to support the unpacking of the habitat archive
-import * as decompress from "decompress"
-import * as decompressTargz from "decompress-targz"
+import * as decompress from "decompress";
+import * as decompressTargz from "decompress-targz";
 
 import * as os from "os";
 
 import {sprintf} from "sprintf-js";
 
-function installHabitat() {
+async function run() {
+
+    // initialise the settings class
+    let taskParameters = new task.TaskParameters();
+
+    let params = await taskParameters.getTaskParameters([]);
 
     // determine the platform
     switch (os.platform()) {
         case "linux":
 
-            let url = "https://api.bintray.com/content/habitat/stable/linux/x86_64/hab-%24latest-x86_64-linux.tar.gz?bt_package=hab-x86_64-linux";
-
             // check that hab does not already exist
-            if (!fs.existsSync("/tmp/hab")) {
+            if (!tl.exist(params.paths["habitat"])) {
 
                 console.log("Installing Habitat");
 
                 // download, unzip and copy habitat
                 try {
 
-                    let curl_exit_code = tl.tool("curl").line(sprintf("-L %s --output /tmp/hab.tar.gz", url)).execSync();
+                    // build up the command to download the file
+                    let cmd = "curl";
+                    let args = sprintf("-L %s --output %s", params.scriptUrl, params.paths["download_path"]);
+
+                    let curl_exit_code = await tl.tool(cmd).line(args).exec();
 
                     // unpack the downloaded file into /usr/local/bin
-                    decompress('/tmp/hab.tar.gz', '/tmp', {
+                    decompress(params.paths["download_path"], params.paths["unpack_path"], {
                         plugins: [
                             decompressTargz()
                         ],
                         strip: 1
                     }).then(() => {
-                        console.log('Habitat installed: /tmp/hab')
-                    })
+                        console.log("Habitat installed: %s", params.paths["unpack_path"]);
+                    });
 
                 } catch (err) {
                     tl.setResult(tl.TaskResult.Failed, err.message);
@@ -50,14 +57,6 @@ function installHabitat() {
             break;
 
     }
-
 }
 
-async function run() {
-
-    // ensure that habitat is installed and available
-    // this will be platform dependent
-    installHabitat();
-}
-
-run()
+run();

@@ -11,7 +11,7 @@
     "Minor": 0,
     "Patch": 11
   },
-  "instanceNameFormat": "Signing Origin Key",
+  "instanceNameFormat": "Signing Origin Key: $(taskAction)",
   "groups": [
   ],
   "inputs": [
@@ -22,6 +22,18 @@
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "Select or create new Habitat Origin endpoint"
+    },
+    {
+      "name": "taskAction",
+      "type": "pickList",
+      "label": "Action",
+      "defaultValue": "install",
+      "required": true,
+      "helpMarkDown": "State if the signing key files should be installed or deleted",
+      "options": {
+        "install": "Install signing key files on agent",
+        "remove": "Remove signing key files"
+      }
     }
   ],
   "execution": {
