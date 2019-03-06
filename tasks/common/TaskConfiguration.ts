@@ -62,9 +62,17 @@ export class TaskParameters {
 
         // based on the operating system determine the defaults for the folders
         // and downloads
+        let parent_path: string = path.join(os.homedir(), ".hab");
         switch (os.platform()) {
             case "win32":
 
+                // Set the location for habitat on a Windows machine
+                this.paths["habitat"] = path.join("C:", "ProgramData", "habitat", "hab.exe");
+
+                this.scriptUrl = "https://api.bintray.com/content/habitat/stable/windows/x86_64/hab-%24latest-x86_64-windows.zip?bt_package=hab-x86_64-windows";
+
+                this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
+                
                 break;
 
             default:
@@ -76,17 +84,12 @@ export class TaskParameters {
                 let running_user = username.sync();
 
                 // based on the username determine the parent path
-                let parent_path: string = "";
                 if (running_user === "root") {
                     parent_path = "/hab";
                     this.runningAsRoot = true;
-                } else {
-                    parent_path = path.join(os.homedir(), ".hab");
                 }
 
                 // set the required paths
-                this.paths["config_file"] = path.join(parent_path, "etc", "cli.toml");
-                this.paths["signing_keys"] = path.join(parent_path, "cache", "keys");
                 this.paths["habitat"] = "/tmp/hab";
 
                 // set the default download url for habitat
@@ -94,16 +97,22 @@ export class TaskParameters {
 
                 // determine the download path
                 this.paths["download_path"] = "/tmp/hab.tar.gz";
-                this.paths["unpack_path"] = "/tmp";
 
-                // ensure that the paths exist so files can be written
-                if (!tl.exist(path.dirname(this.paths["config_file"]))) {
-                    tl.mkdirP(path.dirname(this.paths["config_file"]));
-                }
+        }
 
-                if (!tl.exist(this.paths["signing_keys"])) {
-                    tl.mkdirP(this.paths["signing_keys"]);
-                }
+        // ensure that the paths are correct
+        this.paths["config_file"] = path.join(parent_path, "etc", "cli.toml");
+        this.paths["signing_keys"] = path.join(parent_path, "cache", "keys");
+
+        this.paths["unpack_dir"] = path.dirname(this.paths["habitat"]);
+
+        // ensure that the paths exist so files can be written
+        if (!tl.exist(path.dirname(this.paths["config_file"]))) {
+            tl.mkdirP(path.dirname(this.paths["config_file"]));
+        }
+
+        if (!tl.exist(this.paths["signing_keys"])) {
+            tl.mkdirP(this.paths["signing_keys"]);
         }
     }
 
