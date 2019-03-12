@@ -13,12 +13,9 @@ import { sprintf } from "sprintf-js";
 import * as path from "path";
 import * as os from "os";
 import * as tl from "azure-pipelines-task-lib/task";
-import * as username from "username";
 
 // Import library to assist if running with elevated privileges
 import * as elevated from "is-elevated";
-
-import { getMaxListeners } from "cluster";
 
 export class TaskParameters {
 
@@ -64,6 +61,11 @@ export class TaskParameters {
      */
     private async standard() {
 
+        // determine if the user is running with elevated permissions
+        this.runningAsRoot = await elevated().then(function (isElevated: boolean) {
+            return isElevated;
+        });
+
         // based on the operating system determine the defaults for the folders
         // and downloads
         let parent_path: string = path.join(os.homedir(), ".hab");
@@ -76,26 +78,14 @@ export class TaskParameters {
                 this.scriptUrl = "https://api.bintray.com/content/habitat/stable/windows/x86_64/hab-%24latest-x86_64-windows.zip?bt_package=hab-x86_64-windows";
 
                 this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
-
-                // determine if the user is running with elevated permissions
-                this.runningAsRoot = await elevated().then(function (isElevated: boolean) {
-                    return isElevated;
-                });
                 
                 break;
 
             default:
 
-                // configure the default settings for non windows agents
-
-                // determine if running as root or not, as this will affect the location
-                // of where the files are written out to
-                let running_user = username.sync();
-
-                // based on the username determine the parent path
-                if (running_user === "root") {
+                // determine the parent path if running as root
+                if (this.runningAsRoot) {
                     parent_path = "/hab";
-                    this.runningAsRoot = true;
                 }
 
                 // set the required paths

@@ -7,7 +7,6 @@
     "decompress-targz": "4.1",
     "decompress-unzip": "4.0.1",
     "sprintf-js": "^1.0.3",
-    "username": "^3.0.0",
     "is-elevated": "^2.0.1"
   }
 }
