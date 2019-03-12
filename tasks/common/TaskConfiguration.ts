@@ -14,6 +14,10 @@ import * as path from "path";
 import * as os from "os";
 import * as tl from "azure-pipelines-task-lib/task";
 import * as username from "username";
+
+// Import library to assist if running with elevated privileges
+import * as elevated from "is-elevated";
+
 import { getMaxListeners } from "cluster";
 
 export class TaskParameters {
@@ -72,6 +76,11 @@ export class TaskParameters {
                 this.scriptUrl = "https://api.bintray.com/content/habitat/stable/windows/x86_64/hab-%24latest-x86_64-windows.zip?bt_package=hab-x86_64-windows";
 
                 this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
+
+                // determine if the user is running with elevated permissions
+                this.runningAsRoot = elevated().then(function (isElevated: boolean) {
+                    return isElevated;
+                });
                 
                 break;
 
@@ -225,7 +234,7 @@ export class TaskParameters {
                     // get the value from the task
                     value = tl.getInput(parameter, required);
                     break;
-                case "data": 
+                case "data":
                     // get non-sensitive data from the endpoint
                     value = tl.getEndpointDataParameter(connectedService, parameter, required);
                     break;
