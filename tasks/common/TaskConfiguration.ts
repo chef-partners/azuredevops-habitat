@@ -62,7 +62,7 @@ export class TaskParameters {
      * 
      * Will determine the paths for different operating systems
      */
-    private standard() {
+    private async standard() {
 
         // based on the operating system determine the defaults for the folders
         // and downloads
@@ -78,7 +78,7 @@ export class TaskParameters {
                 this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
 
                 // determine if the user is running with elevated permissions
-                this.runningAsRoot = elevated().then(function (isElevated: boolean) {
+                this.runningAsRoot = await elevated().then(function (isElevated: boolean) {
                     return isElevated;
                 });
                 
@@ -136,7 +136,7 @@ export class TaskParameters {
     public async getTaskParameters(required: Array<string>, connectedServiceName = null) : Promise<TaskParameters> {
 
         // Get the standard settings
-        this.standard();
+        await this.standard();
 
         // set variable with environment var name
         let env_var_auth_token = "HAB_AUTH_TOKEN";
