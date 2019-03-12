@@ -228,18 +228,22 @@ export class TaskParameters {
             switch (type) {
                 case "url":
                     // get the endpoint URL from the connected service
+                    tl.debug("Attempting to retrieve endpoint URL");
                     value = tl.getEndpointUrl(connectedService, required);
                     break;
                 case "input":
                     // get the value from the task
+                    tl.debug(sprintf("Attempting to retrieve task input: %s", parameter));
                     value = tl.getInput(parameter, required);
                     break;
                 case "data":
                     // get non-sensitive data from the endpoint
+                    tl.debug(sprintf("Attempting to retrieve data from endpoint: %s", parameter));
                     value = tl.getEndpointDataParameter(connectedService, parameter, required);
                     break;
                 case "auth":
                     // get sensitive data from the endpoint, e.g. auth token or password
+                    tl.debug(sprintf("Attempting to retrieve authorization parameter: %s", parameter));
                     value = tl.getEndpointAuthorizationParameter(connectedService, parameter, required);
                     break;
                 default:

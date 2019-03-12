@@ -5,6 +5,7 @@
     "azure-pipelines-task-lib": "^2.7.1",
     "glob": "^7.1.2",
     "sprintf-js": "^1.0.3",
-    "username": "^3.0.0"
+    "username": "^3.0.0",
+    "is-elevated": "^2.0.1"
   }
 }
