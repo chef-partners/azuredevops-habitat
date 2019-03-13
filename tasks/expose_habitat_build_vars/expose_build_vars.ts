@@ -91,7 +91,7 @@ async function run() {
       // Fail the task if the file does not exist
       if (!tl.exist(filepath)) {
         tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", filepath));
-      }      
+      }
 
       // read in the environment variables
       config({path: path});
