@@ -74,16 +74,14 @@ async function run() {
       // This is because the parse is an exposed method from dotenv and it does not
       // have an exposed function to turn the object into env vars
       Object.keys(parsed).forEach(function (key) {
-
-        Object.keys(parsed).forEach(function (key) {
-          if (!process.env.hasOwnProperty(key)) {
-            tl.debug(sprintf("Processing build env '[%s]': %s", key, parsed[key]));
-            process.env[key] = parsed[key];
-          } else {
-            tl.debug(sprintf("Environment variable is already set, not overwriting: %s", key));
-          }
-        });
+        if (!process.env.hasOwnProperty(key)) {
+          tl.debug(sprintf("Processing build env '[%s]': %s", key, parsed[key]));
+          process.env[key] = parsed[key];
+        } else {
+          tl.debug(sprintf("Environment variable is already set, not overwriting: %s", key));
+        }
       });
+
 
     } else {
 
