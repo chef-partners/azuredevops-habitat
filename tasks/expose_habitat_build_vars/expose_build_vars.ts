@@ -75,15 +75,14 @@ async function run() {
       // have an exposed function to turn the object into env vars
       Object.keys(parsed).forEach(function (key) {
 
-        // determine if the var already exists
-        let exists = tl.getVariable(key);
-
-        // if it exists do not overwrite it
-        if (exists == null) {
-          tl.setVariable(key, parsed[key]);
-        } else {
-          tl.debug(sprintf("Environment variable is already set, not overwriting: %s", key));
-        }
+        Object.keys(parsed).forEach(function (key) {
+          if (!process.env.hasOwnProperty(key)) {
+            tl.debug(sprintf("Processing build env '[%s]': %s", key, parsed[key]));
+            process.env[key] = parsed[key];
+          } else {
+            tl.debug(sprintf("Environment variable is already set, not overwriting: %s", key));
+          }
+        });
       });
 
     } else {
@@ -126,7 +125,7 @@ async function run() {
 
     // if the option has been set to set the build number do it now
     if (params.setBuildNumber) {
-      let build_number = sprintf("%s-%s", process.env.pkg_version, process.env.pkg_release);
+      let build_number = sprintf("%s-%s", process.env["pkg_version"], process.env["pkg_release"]);
       console.log("Setting Build Number: %s", build_number);
       console.log("##vso[build.updatebuildnumber]%s", build_number);
     }
