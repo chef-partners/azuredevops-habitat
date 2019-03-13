@@ -122,7 +122,7 @@ async function run() {
 
     // if the option has been set to set the build number do it now
     if (params.setBuildNumber) {
-      let build_number = sprintf("%s-%s", process.env["pkg_version"], process.env["pkg_release"]);
+      let build_number = sprintf("%s-%s", process.env.pkg_version, process.env.pkg_release);
       console.log("Setting Build Number: %s", build_number);
       console.log("##vso[build.updatebuildnumber]%s", build_number);
     }
