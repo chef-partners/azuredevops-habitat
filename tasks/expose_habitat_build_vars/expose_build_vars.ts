@@ -41,8 +41,8 @@ async function run() {
     // check to see if the lastBuildEnvPath has the file ste on it
     // if it does raise a warning with advice on how to fix it
     let env_file_specified = params.lastBuildEnvPath.match(/last_build\.(ps1|env)/g);
-    if (!env_file_specified == null) {
-      console.log("WARNING - You have specified the full path to the environment file. The task will determine the correct file based on the agent operating system. Please can the task parameter 'Build Environment File' to a directory containing the environment file");
+    if (env_file_specified != null) {
+      tl.setResult(tl.TaskResult.Failed, sprintf("The full path to the last build environment file has been specified. The task will determine the correct file based on the agent operating system. Please can the task parameter 'Build Environment File' to a directory containing the environment file"));
     }
 
     // Using the params.isWindows property determine the path to the last_build file and parse it accordingly
@@ -51,6 +51,11 @@ async function run() {
 
       // set the the path to the powershell file
       filepath = path.join(filepath, "last_build.ps1");
+
+      // Fail the task if the file does not exist
+      if (!tl.exist(filepath)) {
+        tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", filepath));
+      }
 
       // this is a powershell file so it will not be read by the dotenv module properly
       // it needs to be read it, the preceeding $ removed and then parsed
@@ -82,6 +87,11 @@ async function run() {
       filepath = path.join(filepath, "last_build.env");
 
       tl.debug(sprintf("Reading last build environment file: %s", path));
+
+      // Fail the task if the file does not exist
+      if (!tl.exist(filepath)) {
+        tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", filepath));
+      }      
 
       // read in the environment variables
       config({path: path});
