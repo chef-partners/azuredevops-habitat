@@ -42,7 +42,7 @@ async function run() {
     // if it does raise a warning with advice on how to fix it
     let env_file_specified = params.lastBuildEnvPath.match(/last_build\.(ps1|env)/g);
     if (env_file_specified != null) {
-      tl.setResult(tl.TaskResult.Failed, sprintf("The full path to the last build environment file has been specified. The task will determine the correct file based on the agent operating system. Please can the task parameter 'Build Environment File' to a directory containing the environment file"));
+      tl.setResult(tl.TaskResult.Failed, sprintf("The full path to the last build environment file has been specified. The task will determine the correct file based on the agent operating system. Please change the task parameter 'Build Environment File' to a directory containing the environment file"));
     }
 
     // Using the params.isWindows property determine the path to the last_build file and parse it accordingly
