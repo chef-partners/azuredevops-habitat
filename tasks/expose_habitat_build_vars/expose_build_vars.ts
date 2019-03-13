@@ -52,6 +52,9 @@ async function run() {
       // set the the path to the powershell file
       filepath = path.join(filepath, "last_build.ps1");
 
+      // ensure that the path separator is correct
+      filepath = filepath.replace("/", "\\");
+
       // Fail the task if the file does not exist
       if (!tl.exist(filepath)) {
         tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", filepath));
