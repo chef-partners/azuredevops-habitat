@@ -30,14 +30,6 @@
       "defaultValue": "$(Build.BuildNumber)",
       "required": false,
       "helpMarkDown": "Tag to apply for the version"
-    },
-    {
-      "name": "habitatLastBuildEnvPath",
-      "type": "string",
-      "label": "Last Build Environment File",
-      "defaultValue": "$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop/last_build.env",
-      "required": true,
-      "helpMarkDown": "File to be read to set environment variable such as the artifact name"
     }
   ],
   "execution": {
