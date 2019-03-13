@@ -64,7 +64,7 @@ async function run() {
 
       // remove $ from the beginning of any lines
       tl.debug("Removing '$' from the beginning of each line");
-      let pattern = /^\$/g;
+      let pattern = /\$/g;
       content = content.replace(pattern, "");
 
       // parse the string to get the necessary config object
