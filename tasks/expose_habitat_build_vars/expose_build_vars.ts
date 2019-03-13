@@ -95,7 +95,7 @@ async function run() {
       }
 
       // read in the environment variables
-      config({path: path});
+      config({path: filepath});
     }
 
     // define list of habitat variables that are to be exposed
