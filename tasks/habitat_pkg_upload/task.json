@@ -27,7 +27,7 @@
       "name": "habitatPackagePath",
       "type": "filePath",
       "label": "Package Path",
-      "defaultValue": "",
+      "defaultValue": "$(Build.SourcesDirectory)/results/$(pkg_artifact)",
       "required": true,
       "helpMarkDown": "Path to the built Habitat package"
     },
