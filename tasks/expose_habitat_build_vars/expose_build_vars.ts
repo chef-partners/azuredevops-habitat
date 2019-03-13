@@ -12,7 +12,9 @@ import * as tl from "azure-pipelines-task-lib/task";
 import * as task from "./common/TaskConfiguration";
 
 // Import library to read environment vars from files
-import {config} from "dotenv";
+import {config, parse} from "dotenv";
+import * as fs from "fs";
+import * as path from "path";
 
 import {sprintf} from "sprintf-js";
 
@@ -33,11 +35,57 @@ async function run() {
   let params = await taskParameters.getTaskParameters(required);
 
   if (!tl.exist(params.lastBuildEnvPath)) {
-    tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment file: %s", params.lastBuildEnvPath));
+    tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment: %s", params.lastBuildEnvPath));
   } else {
 
-    // read in the environment variables
-    config({path: params.lastBuildEnvPath});
+    // check to see if the lastBuildEnvPath has the file ste on it
+    // if it does raise a warning with advice on how to fix it
+    let env_file_specified = params.lastBuildEnvPath.match(/last_build\.(ps1|env)/g);
+    if (!env_file_specified == null) {
+      console.log("WARNING - You have specified the full path to the environment file. The task will determine the correct file based on the agent operating system. Please can the task parameter 'Build Environment File' to a directory containing the environment file");
+    }
+
+    // Using the params.isWindows property determine the path to the last_build file and parse it accordingly
+    let filepath = params.lastBuildEnvPath;
+    if (params.isWindows) {
+
+      // set the the path to the powershell file
+      filepath = path.join(filepath, "last_build.ps1");
+
+      // this is a powershell file so it will not be read by the dotenv module properly
+      // it needs to be read it, the preceeding $ removed and then parsed
+      tl.debug(sprintf("Reading last build environment file: %s", filepath));
+      let content = fs.readFileSync(filepath, "utf8");
+
+      // remove $ from the beginning of any lines
+      tl.debug("Removing '$' from the beginning of each line");
+      let pattern = /^\$/g;
+      content = content.replace(pattern, "");
+
+      // parse the string to get the necessary config object
+      let parsed = parse(content);
+
+      // Iterate around the object setting the environment variables
+      // This is because the parse is an exposed method from dotenv and it does not
+      // have an exposed function to turn the object into env vars
+      Object.keys(parsed).forEach(function (key) {
+        if (!process.env.hasOwnProperty(key)) {
+          process.env[key] = parsed[key];
+        } else {
+          tl.debug(sprintf("'%s' is already defined in \`process.env\` and will not be overwritten", key));
+        }
+      });
+
+    } else {
+
+      // set the path
+      filepath = path.join(filepath, "last_build.env");
+
+      tl.debug(sprintf("Reading last build environment file: %s", path));
+
+      // read in the environment variables
+      config({path: path});
+    }
 
     // define list of habitat variables that are to be exposed
     // this is so that it can be iterated over
@@ -55,7 +103,7 @@ async function run() {
     // iterate around the habitat var names and set the build environment variables
     for (let habitat_var_name of habitat_var_names)
     {
-      tl.debug(sprintf("Setting variables '%s': %s", habitat_var_name, process.env[habitat_var_name]));
+      tl.debug(sprintf("Setting variable '%s': %s", habitat_var_name, process.env[habitat_var_name]));
 
       // now set the variable
       tl.setVariable(habitat_var_name, process.env[habitat_var_name]);

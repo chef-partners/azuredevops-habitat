@@ -53,6 +53,7 @@ export class TaskParameters {
     public imageNames: string = null;
     public imageNamesFilename: string = null;
     public depotUrl: string = null;
+    public isWindows: boolean = false;
 
     /**
      * Function to return a standard object with default values
@@ -78,6 +79,9 @@ export class TaskParameters {
                 this.scriptUrl = "https://api.bintray.com/content/habitat/stable/windows/x86_64/hab-%24latest-x86_64-windows.zip?bt_package=hab-x86_64-windows";
 
                 this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
+
+                // Set the object property which states that the platform is windows
+                this.isWindows = true;
                 
                 break;
 
@@ -197,7 +201,11 @@ export class TaskParameters {
 
             // output information to the console
             console.log("Running as root: %s", this.runningAsRoot);
-            console.log("Use Sudo: %s", this.useSudo);
+
+            // only output Sudo use if not windows
+            if (!this.isWindows) {
+                console.log("Use Sudo: %s", this.useSudo);
+            }
 
         } catch (error) {
             throw new Error(sprintf("Task failed during initialisation. Error: %s", error.message));
