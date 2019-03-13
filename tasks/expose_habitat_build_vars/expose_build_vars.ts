@@ -34,26 +34,23 @@ async function run() {
 
   let params = await taskParameters.getTaskParameters(required);
 
-  if (!tl.exist(params.lastBuildEnvPath)) {
-    tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment: %s", params.lastBuildEnvPath));
+  let filepath = params.lastBuildEnvPath;
+  if (!tl.exist(filepath)) {
+    tl.setResult(tl.TaskResult.Failed, sprintf("Unable to locate last build environment: %s", filepath));
   } else {
 
     // check to see if the lastBuildEnvPath has the file ste on it
     // if it does raise a warning with advice on how to fix it
-    let env_file_specified = params.lastBuildEnvPath.match(/last_build\.(ps1|env)/g);
+    let env_file_specified = filepath.match(/last_build\.(ps1|env)/g);
     if (env_file_specified != null) {
       tl.setResult(tl.TaskResult.Failed, sprintf("The full path to the last build environment file has been specified. The task will determine the correct file based on the agent operating system. Please change the task parameter 'Build Environment File' to a directory containing the environment file"));
     }
 
     // Using the params.isWindows property determine the path to the last_build file and parse it accordingly
-    let filepath = params.lastBuildEnvPath;
     if (params.isWindows) {
 
       // set the the path to the powershell file
       filepath = path.join(filepath, "last_build.ps1");
-
-      // ensure that the path separator is correct
-      filepath = filepath.replace("/", "\\");
 
       // Fail the task if the file does not exist
       if (!tl.exist(filepath)) {
@@ -77,10 +74,15 @@ async function run() {
       // This is because the parse is an exposed method from dotenv and it does not
       // have an exposed function to turn the object into env vars
       Object.keys(parsed).forEach(function (key) {
-        if (!process.env.hasOwnProperty(key)) {
-          process.env[key] = parsed[key];
+
+        // determine if the var already exists
+        let exists = tl.getVariable(key);
+
+        // if it exists do not overwrite it
+        if (exists == null) {
+          tl.setVariable(key, parsed[key]);
         } else {
-          tl.debug(sprintf("'%s' is already defined in \`process.env\` and will not be overwritten", key));
+          tl.debug(sprintf("Environment variable is already set, not overwriting: %s", key));
         }
       });
 

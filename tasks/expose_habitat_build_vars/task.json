@@ -57,7 +57,7 @@
       "name": "habitatImageNamesFilename",
       "type": "string",
       "label": "Image Names Filename",
-      "defaultValue": "$System.DefaultWorkingDirectory)/image.names",
+      "defaultValue": "$(System.DefaultWorkingDirectory)/image.names",
       "required": true,
       "helpMarkDown": "Name of the file that contains the image names to tag",
       "groupName": "advanced"
