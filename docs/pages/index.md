@@ -3,6 +3,8 @@ title: Azure DevOps Habitat Extension
 permalink: index.html
 ---
 
+[![Build status](https://dev.azure.com/chef-software/vsts-habitat/_apis/build/status/vsts-habitat-CI)](https://dev.azure.com/chef-software/vsts-habitat/_build/latest?definitionId=1)
+
 NOTE: There are breaking changes for the [Package Export](https://chef-partners.github.io/package-export.html) task in version 2.x
 
 This [Habitat](https://habitat.sh) integration for Azure Devops provides a set of tasks that enable the use of Habitat during the Build and Release phases pipelines. Use these tasks to build and release your software application as a Habitat package that can be deployed anywhere.
