@@ -1,6 +1,6 @@
 {
   "id": "85c833cc-4ccd-420c-b007-2a150acdce78",
-  "name": "vsts-habitat-pkg-install",
+  "name": "pkg-install",
   "friendlyName": "Package Install (Habitat)",
   "description": "Install a package from a local source",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",

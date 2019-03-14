@@ -1,6 +1,6 @@
 {
   "id": "431c62fb-3fb4-4a34-892f-6c0ccb6daa89",
-  "name": "vsts-habitat-build",
+  "name": "build",
   "friendlyName": "Build Plan (Habitat)",
   "description": "Build a Habitat plan",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",

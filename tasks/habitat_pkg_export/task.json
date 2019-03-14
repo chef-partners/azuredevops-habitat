@@ -1,6 +1,6 @@
 {
   "id": "a8cfe066-e65f-4946-a181-bd9f13d65235",
-  "name": "vsts-habitat-pkg-export",
+  "name": "pkg-export",
   "friendlyName": "Package Export (Habitat)",
   "description": "Export a package to the specified format",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",

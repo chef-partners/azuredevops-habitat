@@ -1,6 +1,6 @@
 {
     "manifestVersion": "1",
-    "id": "vsts-habitat-tasks",
+    "id": "habitat",
     "name": "Habitat Integration",
     "version": "0.1.28",
     "publisher": "chef-software",
@@ -161,7 +161,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-install",
+            "id": "install-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -171,7 +171,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-build",
+            "id": "build-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -181,7 +181,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-signing-key",
+            "id": "signing-key-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -191,7 +191,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-pkg-upload",
+            "id": "pkg-upload-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -201,7 +201,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-pkg-export",
+            "id": "pkg-export-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -211,7 +211,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-pkg-install",
+            "id": "pkg-install-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -221,7 +221,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-docker-tag",
+            "id": "docker-tag-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
@@ -231,7 +231,7 @@
             }
         },
         {
-            "id": "vsts-expose-habitat-build-vars",
+            "id": "expose-habitat-build-vars-task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
