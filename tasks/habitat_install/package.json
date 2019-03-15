@@ -2,7 +2,7 @@
   "name": "task-habitat-install",
   "version": "1.0.0",
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.7.1",
+    "azure-pipelines-task-lib": "^2.8.0",
     "decompress": "^4.2.0",
     "decompress-targz": "4.1",
     "decompress-unzip": "4.0.1",
