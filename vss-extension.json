@@ -11,7 +11,7 @@
     ],
     "description": "Tasks for performing Habitat build and export functions.",
     "categories": [
-        "Build and release"
+        "Azure Pipelines"
     ],
     "galleryFlags": [
     ],
