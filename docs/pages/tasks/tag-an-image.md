@@ -11,6 +11,9 @@ permalink: tag-an-image.html
 
 Tags a Docker image that has been exported from Habitat.
 
+As of version 3.x of the extension this task is **DEPRECATED**. It will be removed from version 4 onwards.
+The reason for the deprecation is because a file of the tags that should be applied to the Docker image can be written out by the Expose Habitat Build Variables task. Then with the Docker task this file can be passed in as a parameter to tag the image accordingly.
+
 ## Description
 
 It is not possible to tag a Docker image that is exported from Habitat. However if the image needs to be uploaded to a Docker Registry (using one of the Azure DevOps Docker tasks) then it must be tagged. This task allows the tagging of the exported image.
