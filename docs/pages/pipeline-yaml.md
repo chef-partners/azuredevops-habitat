@@ -1,3 +1,8 @@
+---
+title: Azure DevOps Pipeline YAML file
+url: /azdo-pipeline.html
+---
+
 # Azure DevOps Pipeline YAML Files
 
 The tasks in the Habitat extension can be configured in an Azure DevOps Pipeline yaml file.
