@@ -13,7 +13,7 @@ Exposes the last build variables to the Azure DevOps agent
 
 ## Description
 
-Depending on the platform, this task will read the contents of the `results/last_build.env` or `results/last_build.ps1` variable and expose the values as environment variables that can be used in subsequent tasks.
+Depending on the platform, this task will read the contents of the `results/last_build.env` (Linux) or `results/last_build.ps1` (Windows) file and expose the values as environment variables that can be used in subsequent tasks.
 
 NOTE: This is a change from version 3.x onwards. In previous versions the full path to the build environment file needed to be specified. Now just the path to the directory is required.
 
