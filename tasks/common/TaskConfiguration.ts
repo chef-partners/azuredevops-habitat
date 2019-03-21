@@ -13,8 +13,9 @@ import { sprintf } from "sprintf-js";
 import * as path from "path";
 import * as os from "os";
 import * as tl from "azure-pipelines-task-lib/task";
-import * as username from "username";
-import { getMaxListeners } from "cluster";
+
+// Import library to assist if running with elevated privileges
+import * as elevated from "is-elevated";
 
 export class TaskParameters {
 
@@ -52,41 +53,46 @@ export class TaskParameters {
     public imageNames: string = null;
     public imageNamesFilename: string = null;
     public depotUrl: string = null;
+    public isWindows: boolean = false;
 
     /**
      * Function to return a standard object with default values
      * 
      * Will determine the paths for different operating systems
      */
-    private standard() {
+    private async standard() {
+
+        // determine if the user is running with elevated permissions
+        this.runningAsRoot = await elevated().then(function (isElevated: boolean) {
+            return isElevated;
+        });
 
         // based on the operating system determine the defaults for the folders
         // and downloads
+        let parent_path: string = path.join(os.homedir(), ".hab");
         switch (os.platform()) {
             case "win32":
 
+                // Set the location for habitat on a Windows machine
+                this.paths["habitat"] = path.join("C:", "ProgramData", "habitat", "hab.exe");
+
+                this.scriptUrl = "https://api.bintray.com/content/habitat/stable/windows/x86_64/hab-%24latest-x86_64-windows.zip?bt_package=hab-x86_64-windows";
+
+                this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
+
+                // Set the object property which states that the platform is windows
+                this.isWindows = true;
+                
                 break;
 
             default:
 
-                // configure the default settings for non windows agents
-
-                // determine if running as root or not, as this will affect the location
-                // of where the files are written out to
-                let running_user = username.sync();
-
-                // based on the username determine the parent path
-                let parent_path: string = "";
-                if (running_user === "root") {
+                // determine the parent path if running as root
+                if (this.runningAsRoot) {
                     parent_path = "/hab";
-                    this.runningAsRoot = true;
-                } else {
-                    parent_path = path.join(os.homedir(), ".hab");
                 }
 
                 // set the required paths
-                this.paths["config_file"] = path.join(parent_path, "etc", "cli.toml");
-                this.paths["signing_keys"] = path.join(parent_path, "cache", "keys");
                 this.paths["habitat"] = "/tmp/hab";
 
                 // set the default download url for habitat
@@ -94,16 +100,22 @@ export class TaskParameters {
 
                 // determine the download path
                 this.paths["download_path"] = "/tmp/hab.tar.gz";
-                this.paths["unpack_path"] = "/tmp";
 
-                // ensure that the paths exist so files can be written
-                if (!tl.exist(path.dirname(this.paths["config_file"]))) {
-                    tl.mkdirP(path.dirname(this.paths["config_file"]));
-                }
+        }
 
-                if (!tl.exist(this.paths["signing_keys"])) {
-                    tl.mkdirP(this.paths["signing_keys"]);
-                }
+        // ensure that the paths are correct
+        this.paths["config_file"] = path.join(parent_path, "etc", "cli.toml");
+        this.paths["signing_keys"] = path.join(parent_path, "cache", "keys");
+
+        this.paths["unpack_dir"] = path.dirname(this.paths["habitat"]);
+
+        // ensure that the paths exist so files can be written
+        if (!tl.exist(path.dirname(this.paths["config_file"]))) {
+            tl.mkdirP(path.dirname(this.paths["config_file"]));
+        }
+
+        if (!tl.exist(this.paths["signing_keys"])) {
+            tl.mkdirP(this.paths["signing_keys"]);
         }
     }
 
@@ -118,7 +130,7 @@ export class TaskParameters {
     public async getTaskParameters(required: Array<string>, connectedServiceName = null) : Promise<TaskParameters> {
 
         // Get the standard settings
-        this.standard();
+        await this.standard();
 
         // set variable with environment var name
         let env_var_auth_token = "HAB_AUTH_TOKEN";
@@ -189,7 +201,11 @@ export class TaskParameters {
 
             // output information to the console
             console.log("Running as root: %s", this.runningAsRoot);
-            console.log("Use Sudo: %s", this.useSudo);
+
+            // only output Sudo use if not windows
+            if (!this.isWindows) {
+                console.log("Use Sudo: %s", this.useSudo);
+            }
 
         } catch (error) {
             throw new Error(sprintf("Task failed during initialisation. Error: %s", error.message));
@@ -210,18 +226,22 @@ export class TaskParameters {
             switch (type) {
                 case "url":
                     // get the endpoint URL from the connected service
+                    tl.debug("Attempting to retrieve endpoint URL");
                     value = tl.getEndpointUrl(connectedService, required);
                     break;
                 case "input":
                     // get the value from the task
+                    tl.debug(sprintf("Attempting to retrieve task input: %s", parameter));
                     value = tl.getInput(parameter, required);
                     break;
-                case "data": 
+                case "data":
                     // get non-sensitive data from the endpoint
+                    tl.debug(sprintf("Attempting to retrieve data from endpoint: %s", parameter));
                     value = tl.getEndpointDataParameter(connectedService, parameter, required);
                     break;
                 case "auth":
                     // get sensitive data from the endpoint, e.g. auth token or password
+                    tl.debug(sprintf("Attempting to retrieve authorization parameter: %s", parameter));
                     value = tl.getEndpointAuthorizationParameter(connectedService, parameter, required);
                     break;
                 default:

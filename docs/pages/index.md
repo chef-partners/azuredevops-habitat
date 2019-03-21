@@ -3,6 +3,10 @@ title: Azure DevOps Habitat Extension
 permalink: index.html
 ---
 
+[![Build status](https://dev.azure.com/chef-software/vsts-habitat/_apis/build/status/vsts-habitat-CI)](https://dev.azure.com/chef-software/vsts-habitat/_build/latest?definitionId=1)
+
+NOTE: There is a change to the [Expose Habitat Build Variables](https://chef-partners.github.io/expose-build-variables.html) task in version 3.x that will fail the build if the full path to the `last_build` file is given. Please refer to the task documentation for more information.
+
 NOTE: There are breaking changes for the [Package Export](https://chef-partners.github.io/package-export.html) task in version 2.x
 
 This [Habitat](https://habitat.sh) integration for Azure Devops provides a set of tasks that enable the use of Habitat during the Build and Release phases pipelines. Use these tasks to build and release your software application as a Habitat package that can be deployed anywhere.
@@ -24,7 +28,7 @@ These tasks are typically used as part of your release process:
  - **Package install**: Install a Habitat package locally
  - **Package upload**: Upload Habitat package to the specified depot
  - **Package export**: Export a Habitat package to a different format
- - **Tag an image**: Tag a Docker image that has been created by exporting a Habitat package with the previous task.
+ - [DEPRECATED] **Tag an image**: Tag a Docker image that has been created by exporting a Habitat package with the previous task.
 
 ## Getting Started
 

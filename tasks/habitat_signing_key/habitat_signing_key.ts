@@ -8,6 +8,7 @@ import * as task from "./common/TaskConfiguration";
 import * as path from "path";
 
 import {sprintf} from "sprintf-js";
+import { debug } from "util";
 
 async function run() {
 
@@ -45,6 +46,13 @@ async function run() {
             // write out the data to the files
             tl.writeFile(public_key_path, params.originPublicKey);
             tl.writeFile(signing_key_path, params.originSigningKey);
+
+            // Set environment variables to assist the build
+            // These are the HAB_ORIGIN and the HAB_CACHE_KEY_PATH
+            tl.debug(sprintf("Setting environment variable for HAB_ORIGIN: %s", params.originName));
+            tl.setVariable("HAB_ORIGIN", params.originName);
+            tl.debug(sprintf("Setting environment variable for HAB_CACHE_KEY_PATH: %s", params.paths["signing_keys"]));
+            tl.setVariable("HAB_CACHE_KEY_PATH", params.paths["signing_keys"]);
 
             break;
 

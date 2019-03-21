@@ -19,4 +19,4 @@ NOTE: Although the tasks are designed to be used in the specified phases, all ta
 - [Package Install](/package-install.html): Install a Habitat package locally
 - [Package Upload](/package-upload.html): Upload Habitat package to the specified Depot
 - [Package Export](/package-export.html): Export a Habitat package to a different format.
-- [Tag an Image](/tag-an-image.html): Tag a Docker image that has been created by exporting a Habitat package with the previous task.
+- [Tag an Image](/tag-an-image.html): **DEPRECATED** Tag a Docker image that has been created by exporting a Habitat package with the previous task.

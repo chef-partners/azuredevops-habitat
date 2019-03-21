@@ -1,5 +1,5 @@
 {
-  "name": "chef-vsts-tasks",
+  "name": "habitat-tasks",
   "description": "Chef Integration for Visual Studio Team System (VSTS)",
   "author": "Chef Software, Inc.",
   "scripts": {
@@ -15,20 +15,20 @@
   "devDependencies": {
     "fs-extra": "^2.0.0",
     "mkdirp": "^0.5.1",
-    "q": "^1.4.1",
-    "rimraf": "^2.6.1",
-    "semver": "^5.3.0",
-    "sprintf-js": "^1.0.3",
-    "tfx-cli": "^0.3.49",
-    "ts-node": "^6.1.1",
+    "q": "^1.5.1",
+    "rimraf": "^2.6.3",
+    "semver": "^5.6.0",
+    "sprintf-js": "^1.1.2",
+    "tfx-cli": "^0.6.4",
+    "ts-node": "^6.2.0",
     "tsconfig-glob": "^0.4.3",
     "tslint": "^4.5.1",
-    "typescript": "^2.2.1",
-    "typings": "^2.1.0",
-    "uuidv5": "^1.0.0"
+    "typescript": "^2.9.2",
+    "@types/npm": "^2.0.30",
+    "uuidv5": "^1.0.0",
+    "commander": "^2.19.0"
   },
   "dependencies": {
-    "q": "^1.4.1",
-    "vsts-task-lib": "^1.1.0"
+    "azure-pipelines-task-lib": "^2.8.0"
   }
 }

@@ -1,5 +1,7 @@
 # Habitat Extension for Azure DevOps
 
+[![Build status](https://dev.azure.com/chef-software/vsts-habitat/_apis/build/status/vsts-habitat-CI)](https://dev.azure.com/chef-software/vsts-habitat/_build/latest?definitionId=1)
+
 This repo contains the code and build process for the Habitat Extension for Azure DevOps.
 
 ## Documentation
