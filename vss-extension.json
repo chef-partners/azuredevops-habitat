@@ -231,7 +231,7 @@
             }
         },
         {
-            "id": "vsts-habitat-tasks-expose-habitat-build-vars",
+            "id": "vsts-expose-habitat-build-vars",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
