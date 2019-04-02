@@ -1,6 +1,6 @@
 {
   "id": "7d267ce6-24a1-497b-901d-70e71f4bb1a4",
-  "name": "expose-habitat-build-vars",
+  "name": "vsts-habitat-expose-habitat-build-vars",
   "friendlyName": "Expose Habitat Build Variables",
   "description": "Expose the Habitat Plan build environment variables to the environment",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Expose-Habitat-Build-Vars)",

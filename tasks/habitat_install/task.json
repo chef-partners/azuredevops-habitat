@@ -1,6 +1,6 @@
 {
   "id": "b721bb9b-9a4d-4ee5-aa08-a6b053d4fd8a",
-  "name": "install",
+  "name": "vsts-habitat-install",
   "friendlyName": "Install Habitat",
   "description": "Install Habitat onto an agent",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
