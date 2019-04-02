@@ -1,6 +1,6 @@
 {
     "manifestVersion": "1",
-    "id": "vsts-tasks-habitat",
+    "id": "vsts-habitat-tasks",
     "name": "Habitat Integration",
     "version": "0.1.28",
     "publisher": "chef-software",
