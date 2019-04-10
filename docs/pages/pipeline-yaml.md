@@ -38,23 +38,23 @@ pool:
   name: default
 
 steps:
-- task: chef-software.habitat.install-task.install@3
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-build.vsts-habitat-install@3
   displayName: 'Install Habitat'
 
-- task: chef-software.habitat.signing-key-task.signing-key@3
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-signing-key.vsts-habitat-signing-key@3
   displayName: 'Signing Origin Key: install'
   inputs:
     habitatOrigin: habitat-service-connection
 
-- task: chef-software.habitat.build-task.build@3
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-build.vsts-habitat-build@3
   displayName: 'Build Habitat plan'
   inputs:
     habitatOrigin: habitat-service-connection
 
-- task: chef-software.habitat.expose-habitat-build-vars-task.expose-habitat-build-vars@3
+- task: chef-software.vsts-habitat-tasks.vsts-expose-habitat-build-vars.vsts-expose-habitat-build-vars@3
   displayName: 'Expose Habitat Build Variables'
 
-- task: chef-software.habitat-preview.pkg-upload-task.pkg-upload-preview@3
+- task: chef-software.vsts-habitat-tasks.vsts-habitat-tasks-pkg-upload.vsts-habitat-pkg-upload@3
   displayName: 'Package Upload'
   inputs:
     habitatOrigin: habitat-service-connection
