@@ -1,6 +1,6 @@
 {
   "id": "5108716c-e51e-436c-86c0-bcf06c878938",
-  "name": "docker-tag",
+  "name": "vsts-habitat-docker-tag",
   "friendlyName": "Tag an Image (Habitat)",
   "description": "Tag an exported image",
   "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
