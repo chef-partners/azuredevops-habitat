@@ -60,6 +60,15 @@
       "required": false,
       "helpMarkDown": "Channel that packages will be downloaded from when creating the exported image. If not set `stable` will be used",
       "groupName": "advanced"
+    },
+    {
+      "name": "habitatArguments",
+      "type": "string",
+      "label": "Habitat Command Arguments",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Extra arguments to be applied to the end of the Habitat command line",
+      "groupName": "advanced"
     }
   ],
   "execution": {
