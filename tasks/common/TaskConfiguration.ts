@@ -54,6 +54,7 @@ export class TaskParameters {
     public imageNamesFilename: string = null;
     public depotUrl: string = null;
     public isWindows: boolean = false;
+    public commandArguments: string = null;
 
     /**
      * Function to return a standard object with default values
@@ -107,7 +108,7 @@ export class TaskParameters {
         this.paths["config_file"] = path.join(parent_path, "etc", "cli.toml");
         this.paths["signing_keys"] = path.join(parent_path, "cache", "keys");
 
-        this.paths["unpack_dir"] = path.dirname(this.paths["habitat"]);
+        this.paths["unpack_path"] = path.dirname(this.paths["habitat"]);
 
         // ensure that the paths exist so files can be written
         if (!tl.exist(path.dirname(this.paths["config_file"]))) {
@@ -152,7 +153,8 @@ export class TaskParameters {
             "taskAction": "taskAction",
             "setImageNames": "habitatSetImageNames",
             "imageNames": "habitatImageNames",
-            "imageNamesFilename": "habitatImageNamesFilename"
+            "imageNamesFilename": "habitatImageNamesFilename",
+            "commandArguments": "habitatArguments"
         };
 
         // To assist with debugging check to see if the environment variable NODE_ENV has been
@@ -195,7 +197,7 @@ export class TaskParameters {
             for (let property in mapping) {
                 // determine if the task parameter is required
                 if (required.indexOf(mapping[property]) > -1) {
-                    this[property] = this.getValue(mapping[property], false,"input");
+                    this[property] = this.getValue(mapping[property], false, "input");
                 }
             }
 

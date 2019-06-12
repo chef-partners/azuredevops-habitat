@@ -9,6 +9,8 @@ import * as decompress from "decompress";
 import * as decompressTargz from "decompress-targz";
 import * as decompressUnzip from "decompress-unzip";
 
+import * as path from "path";
+
 import {sprintf} from "sprintf-js";
 
 async function run() {
@@ -26,11 +28,24 @@ async function run() {
         // download, unzip and copy habitat
         try {
 
-            // build up the command to download the file
-            let cmd = "curl";
-            let args = sprintf("-L %s --output %s", params.scriptUrl, params.paths["download_path"]);
+            // build up the command to download the file, depending on the operating system
+            let cmd = "";
+            let args = "";
+
+            if (params.isWindows) {
+                cmd = "powershell";
+                args = sprintf("-Command Invoke-RestMethod -Uri %s -OutFile %s", params.scriptUrl, params.paths["download_path"]);
+            } else {
+                cmd = "curl";
+                args = sprintf("-L %s --output %s", params.scriptUrl, params.paths["download_path"]);
+            }
 
             let curl_exit_code = await tl.tool(cmd).line(args).exec();
+
+            // Ensure that the unpack_path exists
+            if (!tl.exist(params.paths["unpack_path"])) {
+                tl.mkdirP(path.dirname(params.paths["unpack_path"]));
+            }
 
             // unpack the downloaded file into the unpack path
             // the decompress has a list of plugins to unpack the archive
