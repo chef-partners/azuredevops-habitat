@@ -1,0 +1,9 @@
+{
+  "baseUri": "https://localhost:3000",
+  "id": "vsts-habitat-tasks-dev",
+  "public": false,
+  "name": "Habitat Integration - DEV",
+  "galleryFlags": [
+    "Preview"
+  ]
+}

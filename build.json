@@ -1,6 +1,7 @@
 {
     "dirs": {
-        "output": "build"
+        "output": "build",
+        "configs": "config"
     },
     "task_libs": {
         "TaskConfiguration.ts": [

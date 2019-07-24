@@ -6,48 +6,30 @@ import {sprintf} from "sprintf-js";
 // create preview manifest file and set the appropriate flags in each
 export function configure(build_config) {
 
-    console.log("Setting gallery flags");
+    let copies = [
+        "preview",
+        "dev"
+    ];
 
-    // set the file names
-    let production_manifest_file = path.join(build_config.dirs.output, "production", "vss-extension.json");
-    let preview_manifest_file = path.join(build_config.dirs.output, "preview", "vss-extension.json");
+    for (let copy_type of copies) {
+        // set the file names
+        let manifest_file = path.join(build_config.dirs.output, copy_type, "vss-extension.json");
 
-    // PREVIEW patching
-    console.log("Patching: PREVIEW");
+        // PREVIEW patching
+        console.log(sprintf("Patching: %s", copy_type.toUpperCase()));
 
-    // read in the file
-    let preview_manifest = JSON.parse(fs.readFileSync(preview_manifest_file, "utf8"));
+        // read in the file
+        let manifest = JSON.parse(fs.readFileSync(manifest_file, "utf8"));
 
-    // reset the id so that it contains a preview suffix
-    console.log("  add preview suffix to id");
-    preview_manifest.id = sprintf("%s-preview", preview_manifest.id);
+        // ensure that the endpoint is tagged with preview as well
+        console.log(sprintf("  setting %s on endpoint", copy_type.toUpperCase()));
+        manifest.contributions[0].id = sprintf("%s-%s", manifest.contributions[0].id, copy_type);
+        manifest.contributions[0].description = sprintf("%s %s", manifest.contributions[0].description, copy_type);
+        manifest.contributions[0].properties.name = sprintf("%s-%s", manifest.contributions[0].properties.name, copy_type);
+        manifest.contributions[0].properties.displayName = sprintf("%s - %s", manifest.contributions[0].properties.displayName, copy_type.toUpperCase());
 
-    // update the name so that it also carries the preview flag
-    console.log("  add PREVIEW suffix to title");
-    preview_manifest.name = sprintf("%s - PREVIEW", preview_manifest.name);
+        // save the file
+        fs.writeFileSync(manifest_file, JSON.stringify(manifest, null, 4));
+    }
 
-    // set the gallery flag
-    console.log("  setting Peview gallery flag");
-    preview_manifest.galleryFlags.push("Preview");
-
-    // ensure that the endpoint is tagged with preview as well
-    console.log("  setting PREVIEW on endpoint");
-    preview_manifest.contributions[0].id = sprintf("%s-preview", preview_manifest.contributions[0].id);
-    preview_manifest.contributions[0].description = sprintf("%s Preview", preview_manifest.contributions[0].description);
-    preview_manifest.contributions[0].properties.name = sprintf("%s-preview", preview_manifest.contributions[0].properties.name);
-    preview_manifest.contributions[0].properties.displayName = sprintf("%s - PREVIEW", preview_manifest.contributions[0].properties.displayName);
-
-    // save the file
-    fs.writeFileSync(preview_manifest_file, JSON.stringify(preview_manifest, null, 4));
-
-    // PRODUCTION patching
-    console.log("Patching: PRODUCTION");
-
-    let production_manifest = JSON.parse(fs.readFileSync(production_manifest_file, "utf8"));
-
-    // set the gallery flag
-    console.log("  setting Public gallery flag");
-    production_manifest.galleryFlags.push("Public");
-
-    fs.writeFileSync(production_manifest_file, JSON.stringify(production_manifest, null, 4));
 }

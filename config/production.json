@@ -1,0 +1,7 @@
+{
+  "id": "vsts-habitat-tasks",
+  "name": "Habitat Integration",
+  "galleryFlags": [
+    "Public"
+  ]
+}

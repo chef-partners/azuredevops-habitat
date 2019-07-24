@@ -37,6 +37,8 @@ function parseBuildConfig(app_root, build_config_file) {
       return file;
     });
 
+    build_config["app_root"] = app_root;
+
     // set the extension files on the build_config
     build_config["files"]["extension"] = extension_files;
 
@@ -62,11 +64,16 @@ function createPackages(options, build_config) {
   // initialise varibles
   let cmd = "";
   let root_path = "";
+  let override_path = "";
 
-  for (let extension_type of ["preview", "production"]) {
+  for (let extension_type of ["preview", "production", "dev"]) {
     console.log("  %s", extension_type);
     root_path = path.join(build_config["dirs"]["output"], extension_type);
-    cmd = sprintf("%s extension create --root %s --output-path %s --manifests vss-extension.json", options.parent.tfxpath, root_path, build_config["dirs"]["output"]);
+
+    // determine the path to the override file
+    override_path = path.join(build_config["dirs"]["configs"], sprintf("%s.json", extension_type));
+
+    cmd = sprintf("%s extension create --root %s --output-path %s --manifests vss-extension.json --overrides-file %s", options.parent.tfxpath, root_path, build_config["dirs"]["output"], override_path);
     child.execSync(cmd);
   }
 }
