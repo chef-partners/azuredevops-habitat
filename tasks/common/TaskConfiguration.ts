@@ -15,7 +15,7 @@ import * as os from "os";
 import * as tl from "azure-pipelines-task-lib/task";
 
 // Import library to assist if running with elevated privileges
-import * as elevated from "is-elevated";
+import isElevated from "is-elevated";
 
 export class TaskParameters {
 
@@ -64,7 +64,7 @@ export class TaskParameters {
     private async standard() {
 
         // determine if the user is running with elevated permissions
-        this.runningAsRoot = await elevated().then(function (isElevated: boolean) {
+        this.runningAsRoot = await isElevated().then(function (isElevated: boolean) {
             return isElevated;
         });
 
