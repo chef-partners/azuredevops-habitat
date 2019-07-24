@@ -28,7 +28,7 @@ export class TaskParameters {
         "habitat": "",
         "download_path": "",
         "unpack_path": ""
-    }
+    };
     public originName: string = null;
     public originRevision: string = null;
     public originPublicKey: string = null;
