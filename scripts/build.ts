@@ -25,7 +25,7 @@ function parseBuildConfig(app_root, build_config_file) {
     Object.keys(build_config["dirs"]).forEach(function (key) {
       if (!path.isAbsolute(build_config["dirs"][key])) {
         build_config["dirs"][key] = path.join(app_root, build_config["dirs"][key]);
-      };
+      }
     });
 
     // iterate around the extension files and prepend the app_root if the files
