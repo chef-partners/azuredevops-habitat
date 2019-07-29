@@ -112,8 +112,7 @@ async function run() {
     ];
 
     // iterate around the habitat var names and set the build environment variables
-    for (let habitat_var_name of habitat_var_names)
-    {
+    for (let habitat_var_name of habitat_var_names) {
       tl.debug(sprintf("Setting variable '%s': %s", habitat_var_name, process.env[habitat_var_name]));
 
       // now set the variable

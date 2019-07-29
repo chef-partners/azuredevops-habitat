@@ -13,6 +13,11 @@
   },
   "instanceNameFormat": "Build Habitat plan",
   "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
   ],
   "inputs": [
     {
@@ -38,6 +43,15 @@
       "defaultValue": "habitat",
       "required": true,
       "helpMarkDown": "A directory containing a `plan.sh` file or a `habitat/` directory which contains the `plan.sh` file"
+    },
+    {
+      "name": "habitatArguments",
+      "type": "string",
+      "label": "Habitat Command Arguments",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Extra arguments to be applied to the end of the Habitat command line",
+      "groupName": "advanced"
     }
   ],
   "execution": {

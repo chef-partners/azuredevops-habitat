@@ -13,6 +13,11 @@
   },
   "instanceNameFormat": "Package Install",
   "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
   ],
   "inputs": [
     {
@@ -38,6 +43,15 @@
       "defaultValue": "$(System.DefaultWorkingDirectory)/$(System.TeamProject)-CI/drop/last_build.env",
       "required": true,
       "helpMarkDown": "File to be read to set environment variable such as the artifact name"
+    },
+    {
+      "name": "habitatArguments",
+      "type": "string",
+      "label": "Habitat Command Arguments",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Extra arguments to be applied to the end of the Habitat command line",
+      "groupName": "advanced"
     }
   ],
   "execution": {
