@@ -15,7 +15,7 @@ import * as os from "os";
 import * as tl from "azure-pipelines-task-lib/task";
 
 // Import library to assist if running with elevated privileges
-import isElevated from "is-elevated";
+import elevated from "is-elevated";
 
 export class TaskParameters {
 
@@ -58,13 +58,13 @@ export class TaskParameters {
 
     /**
      * Function to return a standard object with default values
-     * 
+     *
      * Will determine the paths for different operating systems
      */
     private async standard() {
 
         // determine if the user is running with elevated permissions
-        this.runningAsRoot = await isElevated().then(function (isElevated: boolean) {
+        this.runningAsRoot = await elevated().then(function (isElevated: boolean) {
             return isElevated;
         });
 
@@ -83,7 +83,7 @@ export class TaskParameters {
 
                 // Set the object property which states that the platform is windows
                 this.isWindows = true;
-                
+
                 break;
 
             default:
@@ -123,12 +123,12 @@ export class TaskParameters {
     /**
      * Returns a settings object with the specified task parameters populated
      * Will also contain default values for paths etc
-     * 
-     * @param required 
-     * @param process 
-     * @param tl 
+     *
+     * @param required
+     * @param process
+     * @param tl
      */
-    public async getTaskParameters(required: Array<string>, connectedServiceName = null) : Promise<TaskParameters> {
+    public async getTaskParameters(required: Array<string>, connectedServiceName = null): Promise<TaskParameters> {
 
         // Get the standard settings
         await this.standard();
@@ -160,7 +160,7 @@ export class TaskParameters {
         // To assist with debugging check to see if the environment variable NODE_ENV has been
         // set and if it has been set to dev. If it has then read the relevant task parameters
         // from environment variables
-        this.isDev = process.env['NODE_ENV'] && process.env['NODE_ENV'].toUpperCase() == 'DEV' ? true : false;
+        this.isDev = process.env["NODE_ENV"] && process.env["NODE_ENV"].toUpperCase() === "DEV" ? true : false;
 
         // attempt to get the necessary information from the task parameters or environment
         try {
