@@ -18,9 +18,11 @@ async function run() {
     // initialise the settings class
     let taskParameters = new task.TaskParameters();
 
+    tl.debug("Retrieving task parameters");
     let params = await taskParameters.getTaskParameters([]);
 
     // check that hab does not already exist
+    tl.debug("Is habitat installed?");
     if (!tl.exist(params.paths["habitat"])) {
 
         console.log("Installing Habitat");
