@@ -26,12 +26,13 @@
     "ts-node": "^8.3",
     "tsconfig-glob": "^0.4.3",
     "tslint": "^5.18",
-    "typescript": "^2.5",
+    "typescript": "^3.5",
     "uuidv5": "^1.0.0"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^2.8.0",
     "webpack": "^4.37.0",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   }
 }
