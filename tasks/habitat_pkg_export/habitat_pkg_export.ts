@@ -19,7 +19,8 @@ async function run() {
     let required = [
         "habitatExportFormat",
         "habitatPackagePath",
-        "habitatPackageChannel"
+        "habitatPackageChannel",
+        "habitatArguments"
     ];
 
     let params = await taskParameters.getTaskParameters(required, "habitatOrigin");
@@ -67,6 +68,9 @@ async function run() {
 
                 // join the args_parts together to get the args
                 let args = args_parts.join(" ");
+
+                // Append arguments that have been set in the task parameters to the args
+                args += sprintf(" %s", params.commandArguments);
 
                 // if in debug mode output the command being executed
                 tl.debug(sprintf("Command: %s %s", cmd, args));
