@@ -181,7 +181,7 @@ export class TaskParameters {
                     // the use of sudo only makes sense when running as a non-root user
                     // so ignore if running as root. The default is false
                     if (!this.runningAsRoot) {
-                        this.useSudo = !!+this.getValue("useSudo", false, "data", connectedService);
+                        this.useSudo = !! + this.getValue("useSudo", true, "data", connectedService);
                     }
                     // get the sensitive information
                     this.originSigningKey = this.getValue("signingKey", true, "auth", connectedService);
