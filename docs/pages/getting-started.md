@@ -19,7 +19,7 @@ You will also need to create a Personal Access Token (PAT) on your Habitat Build
 
 ### License
 
-In later versions of Habitat (from version 0.79 onwards) a license must be accepted before the software can be used. To do this add a variable to the pipeline:
+From Habitat version 0.81 onwards a license must be accepted before the software can be used. To do this add a variable to the pipeline:
 
   `HAB_LICENSE=accept-no-persist`
 
