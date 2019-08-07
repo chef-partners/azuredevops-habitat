@@ -17,17 +17,23 @@ You will also need to create a Personal Access Token (PAT) on your Habitat Build
 
 ![Habitat Profile Page](/images/habitat_profile_page.png)
 
+### License
+
+From Habitat version 0.81 onwards a license must be accepted before the software can be used. To do this add a variable to the pipeline:
+
+  `HAB_LICENSE=accept-no-persist`
+
+This can be done in the Azure DevOps UI or within a pipeline file.
+
+![Set HAB_LICENSE in Azure DevOps Portal](/images/set_var_in_portal.png)
+
+```yaml
+variables:
+- name: HAB_LICENSE
+  value: accept-no-persist
+```
+
 ### Build and Release phase tasks
-
-Currently the tasks need to be run on your own private Linux agent. This is so that the extension is able to download Habitat and access `sudo` if and when it needs to.
-
-To setup a private agent please refer to this [Microsoft GitHub page](https://github.com/Microsoft/vsts-agent).
-
-When the agent is run it should be run under a normal user account that has the ability to use `sudo` without a password. For example if it was running under the account `vsts` then the following should be added to `/etc/sudoers.d/vsts`:
-
-```
-vsts ALL=(root) NOPASSWD:ALL
-```
 
 Each task has been labeled with the phase that is it designed for, but each task _can_ be used in either phase.
 
@@ -36,8 +42,6 @@ Each task has been labeled with the phase that is it designed for, but each task
 If you want to be able to export a Habitat package as a Docker image then you will need to ensure that Docker is installed in your agent. The resulting image can then be used with other Azure DevOps tasks to upload it to the Docker Registry or a private one.
 
 This is _only_ required for the [[Tag an Image]] task.
-
-The extension is still under active development and will move towards being able to use a Hosted agent and Windows agents.
 
 # Further Info
 

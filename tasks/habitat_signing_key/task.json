@@ -3,7 +3,7 @@
   "name": "vsts-habitat-signing-key",
   "friendlyName": "Signing Origin Key (Habitat)",
   "description": "Configure signing origin key",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/signing-key-origin.html)",
   "category": "Build",
   "author": "Chef",
   "version": {

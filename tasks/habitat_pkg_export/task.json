@@ -3,7 +3,7 @@
   "name": "vsts-habitat-pkg-export",
   "friendlyName": "Package Export (Habitat)",
   "description": "Export a package to the specified format",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/package-export.html)",
   "category": "Build",
   "author": "Chef",
   "version": {
@@ -59,6 +59,15 @@
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "Channel that packages will be downloaded from when creating the exported image. If not set `stable` will be used",
+      "groupName": "advanced"
+    },
+    {
+      "name": "habitatArguments",
+      "type": "string",
+      "label": "Habitat Command Arguments",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Extra arguments to be applied to the end of the Habitat command line",
       "groupName": "advanced"
     }
   ],
