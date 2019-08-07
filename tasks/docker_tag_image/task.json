@@ -3,7 +3,7 @@
   "name": "vsts-habitat-docker-tag",
   "friendlyName": "Tag an Image (Habitat)",
   "description": "Tag an exported image",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/tag-an-image.html)",
   "category": "Build",
   "author": "Chef",
   "version": {

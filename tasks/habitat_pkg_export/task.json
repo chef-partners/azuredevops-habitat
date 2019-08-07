@@ -3,7 +3,7 @@
   "name": "vsts-habitat-pkg-export",
   "friendlyName": "Package Export (Habitat)",
   "description": "Export a package to the specified format",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/package-export.html)",
   "category": "Build",
   "author": "Chef",
   "version": {

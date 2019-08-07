@@ -3,7 +3,7 @@
   "name": "vsts-habitat-expose-habitat-build-vars",
   "friendlyName": "Expose Habitat Build Variables",
   "description": "Expose the Habitat Plan build environment variables to the environment",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Expose-Habitat-Build-Vars)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/expose-build-variables.html)",
   "category": "Build",
   "author": "Chef",
   "version": {

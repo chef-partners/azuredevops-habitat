@@ -3,7 +3,7 @@
   "name": "vsts-habitat-pkg-install",
   "friendlyName": "Package Install (Habitat)",
   "description": "Install a package from a local source",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/package-install.html)",
   "category": "Build",
   "author": "Chef",
   "version": {

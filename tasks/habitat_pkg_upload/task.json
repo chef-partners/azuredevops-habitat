@@ -3,7 +3,7 @@
   "name": "vsts-habitat-pkg-upload",
   "friendlyName": "Package Upload (Habitat)",
   "description": "Upload package to a depot",
-  "helpMarkDown": "[More information](https://github.com/chef-partners/vsts-chef/wiki/Task:-Upload-cookbook-to-Chef-Server)",
+  "helpMarkDown": "[More information](https://chef-partners.github.io/azuredevops-habitat/package-upload.html)",
   "category": "Deploy",
   "author": "Chef",
   "version": {
