@@ -1,6 +1,6 @@
 ---
 title: Azure DevOps Pipeline YAML file
-url: /azdo-pipeline.html
+permalink: /azdo-pipeline.html
 ---
 
 # Azure DevOps Pipeline YAML Files
