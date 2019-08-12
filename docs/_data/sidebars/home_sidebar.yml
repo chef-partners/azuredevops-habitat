@@ -65,5 +65,5 @@ entries:
       url: /release-habitat-package.html
       output: web
     - title: Azure DevOps Pipeline YAML file
-      url: /azdo-pipeline.html
+      url: /pipeline-yaml.html
       output: web
