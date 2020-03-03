@@ -30,7 +30,7 @@ docker run --rm --it --volume "${PWD}/docs/:/srv/jekyll" -p 4000:4000 jekyll/jek
 The extension is written in TypeScript which is transpiled to JavaScript using a build process written, again, in TypeScript. If you wish to look at how things work and create the package on a local machine then use the following command:
 
 ```bash
-npn run build:tasks
+npm run build:tasks
 ```
 
 This will execute all of the processes that are required and create two packages in the `build` directory.

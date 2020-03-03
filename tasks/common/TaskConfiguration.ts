@@ -77,7 +77,7 @@ export class TaskParameters {
                 // Set the location for habitat on a Windows machine
                 this.paths["habitat"] = path.join("C:", "ProgramData", "habitat", "hab.exe");
 
-                this.scriptUrl = "https://api.bintray.com/content/habitat/stable/windows/x86_64/hab-%24latest-x86_64-windows.zip?bt_package=hab-x86_64-windows";
+                this.scriptUrl = "https://packages.chef.io/files/stable/habitat/latest/hab-x86_64-windows.zip"
 
                 this.paths["download_path"] = path.join(process.env["TEMP"], "habitat.zip");
 
@@ -97,7 +97,7 @@ export class TaskParameters {
                 this.paths["habitat"] = "/tmp/hab";
 
                 // set the default download url for habitat
-                this.scriptUrl = "https://api.bintray.com/content/habitat/stable/linux/x86_64/hab-%24latest-x86_64-linux.tar.gz?bt_package=hab-x86_64-linux";
+                this.scriptUrl = "https://packages.chef.io/files/stable/habitat/latest/hab-x86_64-linux.tar.gz";
 
                 // determine the download path
                 this.paths["download_path"] = "/tmp/hab.tar.gz";
