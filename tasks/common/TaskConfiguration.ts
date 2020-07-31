@@ -94,7 +94,7 @@ export class TaskParameters {
                 }
 
                 // set the required paths
-                this.paths["habitat"] = "/tmp/hab";
+                this.paths["habitat"] = "/usr/local/bin/hab";
 
                 // set the default download url for habitat
                 this.scriptUrl = "https://packages.chef.io/files/stable/habitat/latest/hab-x86_64-linux.tar.gz";

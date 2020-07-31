@@ -11,6 +11,7 @@ import * as decompressUnzip from "decompress-unzip";
 
 import * as path from "path";
 import {sprintf} from "sprintf-js";
+import * as os from "os";
 
 async function run() {
 
@@ -58,6 +59,11 @@ async function run() {
             }).then(() => {
                 console.log("Habitat installed: %s", params.paths["unpack_path"]);
             });
+
+            // if running in Linux link hab into /tmp so as not to break existing systems
+            if (os.platform() !== "win32") {
+                tl.tool("ln").line("-s /usr/local/bin/hab /tmp/hab").execSync();
+            }
 
         } catch (err) {
             tl.setResult(tl.TaskResult.Failed, err.message);
