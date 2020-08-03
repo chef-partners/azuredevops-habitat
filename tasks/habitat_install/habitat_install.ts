@@ -18,7 +18,7 @@ async function run() {
     // initialise the settings class
     let taskParameters = new task.TaskParameters();
 
-    let params = await taskParameters.getTaskParameters([]);
+    let params = await taskParameters.getTaskParameters([], "habitatOrigin");
 
     // check that hab does not already exist
     if (!tl.exist(params.paths["habitat"])) {
