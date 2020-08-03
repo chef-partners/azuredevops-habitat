@@ -36,8 +36,9 @@ async function run() {
                 cmd = "powershell";
                 args = sprintf("-Command Invoke-RestMethod -Uri %s -OutFile %s", params.scriptUrl, params.paths["download_path"]);
             } else {
+
                 cmd = "curl";
-                args = sprintf("-L %s --output %s", params.scriptUrl, params.paths["download_path"]);
+                args = sprintf("%s -L %s --output %s", args, params.scriptUrl, params.paths["download_path"]);
             }
 
             let curl_exit_code = await tl.tool(cmd).line(args).exec();
@@ -62,7 +63,17 @@ async function run() {
 
             // if running in Linux link hab into /tmp so as not to break existing systems
             if (os.platform() !== "win32") {
-                tl.tool("ln").line("-s /usr/local/bin/hab /tmp/hab").execSync();
+
+                // create the symlink in /usr/local/bin to /tmp/hab
+                if (params.useSudo) {
+                    cmd = "sudo";
+                    args = "ln";
+                } else {
+                    cmd = "ln";
+                    args = "";
+                }
+                tl.tool(cmd).line(sprintf("%s -s /tmp/hab /usr/local/bin/hab", args)).execSync();
+                // tl.tool("ln").line("-s /usr/local/bin/hab /tmp/hab").execSync();
             }
 
         } catch (err) {
