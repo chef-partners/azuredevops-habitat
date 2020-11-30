@@ -76,6 +76,7 @@ export class TaskParameters {
 
                 // Set the location for habitat on a Windows machine
                 this.paths["habitat"] = path.join("C:", "ProgramData", "habitat", "hab.exe");
+                this.paths["unpack_path"] = path.dirname(this.paths["habitat"]);
 
                 this.scriptUrl = "https://packages.chef.io/files/stable/habitat/latest/hab-x86_64-windows.zip"
 
@@ -94,7 +95,8 @@ export class TaskParameters {
                 }
 
                 // set the required paths
-                this.paths["habitat"] = "/tmp/hab";
+                this.paths["habitat"] = "/usr/local/bin/hab";
+                this.paths["unpack_path"] = "/tmp";
 
                 // set the default download url for habitat
                 this.scriptUrl = "https://packages.chef.io/files/stable/habitat/latest/hab-x86_64-linux.tar.gz";
@@ -108,7 +110,7 @@ export class TaskParameters {
         this.paths["config_file"] = path.join(parent_path, "etc", "cli.toml");
         this.paths["signing_keys"] = path.join(parent_path, "cache", "keys");
 
-        this.paths["unpack_path"] = path.dirname(this.paths["habitat"]);
+        
 
         // ensure that the paths exist so files can be written
         if (!tl.exist(path.dirname(this.paths["config_file"]))) {
