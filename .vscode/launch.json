@@ -7,7 +7,7 @@
             "name": "Debug Script",
             "program": "${file}",
             "outFiles": [
-                "${workspaceFolder}/tasks/habitat_build/**/*.js"
+                "${workspaceFolder}/build/production/habitat_build/**/*.js"
             ],
             "env": {
                 "NODE_ENV": "dev",
