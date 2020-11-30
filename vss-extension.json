@@ -9,7 +9,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Tasks for performing Habitat build and export functions.",
+    "description": "DEPRECATED: Tasks for performing Habitat build and export functions.",
     "categories": [
         "Azure Pipelines"
     ],
