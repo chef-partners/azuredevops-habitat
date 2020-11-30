@@ -1,3 +1,8 @@
+# ---- DEPRECATED ----
+This extension is now deprecated in favour of the new Chef Extension for Azure DevOps which can be found [here](https://marketplace.visualstudio.com/items?itemName=chef-software.chef-azdo). The new extension allows the execution of any Chef component.
+
+This version of the Chef Extension will not be developed or maintained. We encourage everyone to upgrade to the new extension. Documentation and migration information can be found [here](https://chef-partners.github.io/azuredevops-chef-extension).
+
 This [Habitat](https://habitat.sh) integration for Azure Devops provides a set of tasks that enable the use of Habitat during the Build and Release phases pipelines. Use these tasks to build and release your software application as a Habitat package that can be deployed anywhere.
 
 [Habitat](https://habitat.sh) provides a toolset that allows software to be packaged into an immutable configurable archive which can be shared. This archive can be deployed anywhere or exported to other formats such as Docker.
