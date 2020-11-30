@@ -2,6 +2,10 @@
 title: Azure DevOps Habitat Extension
 permalink: index.html
 ---
+# ---- DEPRECATED ----
+This extension is now deprecated in favour of the new Chef Extension for Azure DevOps which can be found [here](https://marketplace.visualstudio.com/items?itemName=chef-software.chef-azdo). The new extension allows the execution of any Chef component.
+
+This version of the Chef Extension will not be developed or maintained. We encourage everyone to upgrade to the new extension. Documentation and migration information can be found [here](https://chef-partners.github.io/azuredevops-chef-extension).
 
 [![Build status](https://dev.azure.com/chef-software/vsts-habitat/_apis/build/status/vsts-habitat-CI)](https://dev.azure.com/chef-software/vsts-habitat/_build/latest?definitionId=1)
 
